@@ -7,8 +7,11 @@ function InternalLogin({ navigate }) {
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [direccion, setDireccion] = useState("");
+  const [telefono, setTelefono] = useState("");
   const [estaRegistrado, setEstaRegistrado] = useState(false); // Variable de estado para el registro
-  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,16 +20,19 @@ function InternalLogin({ navigate }) {
       email: email,
       nickname: nickname,
       password: password,
+      nombre: nombre,
+      apellido: apellido,
+      direccion: direccion,
+      telefono: telefono,
     };
 
     const endpoint = estaRegistrado
       ? "http://localhost:8000/usuario"
       : "http://localhost:8000/security/login";
 
-   // const method = estaRegistrado ? "POST" : "POST";
+    // const method = estaRegistrado ? "POST" : "POST";
 
     const parametros = {
-      
       method: "POST",
       body: JSON.stringify(usuario),
       headers: {
@@ -59,7 +65,6 @@ function InternalLogin({ navigate }) {
             setEstaRegistrado(false);
           } else {
             sessionStorage.setItem("token", result.body.token);
-           
 
             toast.success(`Bienvenido, ${usuario.nickname}`, {
               position: "bottom-center",
