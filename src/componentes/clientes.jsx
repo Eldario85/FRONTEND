@@ -11,9 +11,7 @@ class Clientes extends Component {
     this.state = {
       clientes: [],
       //cliente: props.location.state.cliente,
-    
     };
-    
   }
 
   componentDidMount() {
@@ -25,7 +23,7 @@ class Clientes extends Component {
       },
     };
 
-    fetch("http://localhost:8000/cliente", parametros)
+    fetch("http://localhost:8000/usuario", parametros)
       .then((res) =>
         res.json().then((body) => ({
           status: res.status,
@@ -56,29 +54,26 @@ class Clientes extends Component {
       .catch((error) => console.log(error));
   }
 
- 
-
   render() {
     const filas = this.state.clientes.map((cliente, index) => (
       <tr key={index}>
+        <td>{cliente.nickname}</td>
         <td>{cliente.nombre}</td>
         <td>{cliente.apellido}</td>
         <td>{cliente.direccion}</td>
         <td>{cliente.telefono}</td>
-        <td>{cliente.correo_electronico}</td>
-        <td>{cliente.usuarioId}</td>
+        <td>{cliente.email}</td>
+
         <td>
           <Link
             to={{
-              pathname: `/clientes/edit/${cliente.id}`,
+              pathname: `/clientes/edit/${cliente.user_id}`,
               state: { cliente },
             }}
             className="btn btn-primary"
           >
             <span className="material-symbols-outlined">edit</span>
           </Link>
-
-
         </td>
       </tr>
     ));
@@ -88,24 +83,26 @@ class Clientes extends Component {
           <table className="table  table-striped">
             <thead>
               <tr>
+                <th>Nickname</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Direccion</th>
                 <th>Telefono</th>
                 <th>Mail</th>
-                <th>usuarioId</th>
+
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>{filas}</tbody>
+            <Link to={`/clientes/edit`} className="btn btn-primary">
+              <span className="material-symbols-outlined">editar</span>
+            </Link>
           </table>
           <br />
-          <Link to="/clientes/edit" className="btn btn-info">
+          {/* <Link to="/clientes/edit" className="btn btn-info">
             Nuevo Cliente
-          </Link>
+          </Link> */}
         </div>
-
-
       </>
     );
   }

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 
-
 function Menu() {
   const navigate = useNavigate();
   const [token, setToken] = useState("");
@@ -12,8 +11,9 @@ function Menu() {
   useEffect(() => {
     const t = sessionStorage.getItem("token");
     if (t !== token) {
-      setToken(t)
-  } });
+      setToken(t);
+    }
+  });
 
   function logout() {
     sessionStorage.removeItem("token");
@@ -21,8 +21,8 @@ function Menu() {
     navigate("/");
   }
 
-   // const token = sessionStorage.getItem('token')
-   if (token !== "" && token !== null) {
+  // const token = sessionStorage.getItem('token')
+  if (token !== "" && token !== null) {
     // var decoded = jwt_decode(token);
     return (
       <>
@@ -59,9 +59,9 @@ function Menu() {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link to="/productos" className="nav-link">
+                  <Link to="/camisetas" className="nav-link">
                     {" "}
-                    Productos
+                    Camisetas
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -131,19 +131,19 @@ function Menu() {
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
-              <li className="nav-item">
+                <li className="nav-item">
                   <Link to="/login" className="nav-link">
                     {" "}
                     Login / Registrarse
-                 </Link>
-                 </li>
-             
-          </ul>
-         </div>
-         </div>
-         </nav>
-         </>) }
-
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </>
+    );
+  }
 }
 
 export default Menu;

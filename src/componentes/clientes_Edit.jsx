@@ -9,14 +9,13 @@ export class Internal_Clientes_Edit extends Component {
     super(props);
 
     this.state = {
-      id: "",
+      nickname: "",
       nombre: "",
       apellido: "",
       direccion: "",
       telefono: "",
-      correo_electronico: "",
-      usuarioId: "",
-     
+      email: "",
+
       modal: false,
     };
   }
@@ -32,7 +31,7 @@ export class Internal_Clientes_Edit extends Component {
   }
 
   fetchCliente = (id) => {
-    fetch(`http://localhost:8000/cliente/${id}`, {
+    fetch(`http://localhost:8000/usuario/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -48,8 +47,8 @@ export class Internal_Clientes_Edit extends Component {
             apellido: result.body.detail.apellido,
             direccion: result.body.detail.direccion,
             telefono: result.body.detail.telefono,
-            correo_electronico: result.body.detail.correo_electronico,
-            usuarioId: result.body.detail.usuarioId,
+            email: result.body.detail.email,
+            nickname: result.body.detail.nickname,
           });
         } else {
           toast.error(result.body.message, {
@@ -79,8 +78,8 @@ export class Internal_Clientes_Edit extends Component {
 
     const method = id ? "PUT" : "POST";
     const url = id
-      ? `http://localhost:8000/cliente/${id}`
-      : "http://localhost:8000/cliente";
+      ? `http://localhost:8000/usuario/${id}`
+      : "http://localhost:8000/usuario";
 
     fetch(url, {
       method,
@@ -131,8 +130,8 @@ export class Internal_Clientes_Edit extends Component {
         <div className="row">
           <div className="col">
             <h1>
-              {this.props.params.id
-                ? `Edicion del Cliente ${this.props.params.id}`
+              {this.state.nickname
+                ? `Edicion del Cliente ${this.state.nickname}`
                 : "Alta del Cliente"}
             </h1>
           </div>
@@ -141,6 +140,18 @@ export class Internal_Clientes_Edit extends Component {
         <div className="row">
           <div className="col">
             <form onSubmit={this.handleSubmit}>
+              <div className="form-floating">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="floatingNickname"
+                  placeholder="nickname"
+                  value={this.state.nickname}
+                  name="nickname"
+                />
+                <label for="nickname">Nickname</label>
+              </div>
+              <br />
               <div className="form-floating">
                 <input
                   type="text"
@@ -202,31 +213,16 @@ export class Internal_Clientes_Edit extends Component {
                 <input
                   type="email"
                   className="form-control"
-                  id="correo_electronico"
+                  id="email"
                   placeholder="Email"
                   onChange={this.handleChange}
-                  value={this.state.correo_electronico}
-                  name="correo_electronico"
+                  value={this.state.email}
+                  name="email"
                 />
-                <label for="correo_electronico">Email</label>
+                <label for="email">Email</label>
               </div>
               <br />
 
-              <div className="form-floating">
-                <input
-                  type="number"
-                  className="form-control"
-                  id="floatingUsuarioId"
-                  placeholder="usuarioId"
-                  value={this.state.usuarioId}
-                
-                 
-                 
-              
-                  name="usuarioId"
-                />
-                <label for="usuarioId">Usuario Id</label>
-              </div>
               <br />
 
               <input

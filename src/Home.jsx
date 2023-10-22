@@ -2,11 +2,62 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Placeholder from "react-bootstrap/Placeholder";
+import Carousel from "react-bootstrap/Carousel";
+import "./App.css";
+import { MDBCarousel, MDBCarouselItem } from "mdb-react-ui-kit";
 
 export default function Home() {
   return (
     <>
-      {" "}
+      <div className="d-flex justify-content-around">
+        <div className="text-center">
+          <h4>Camisetas Argentinas</h4>
+          <MDBCarousel fade>
+            <MDBCarouselItem
+              className="w-100 d-block my-custom-carousel-item"
+              itemId={1}
+              src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/401778e50ef4449d9656d40e9346b8af_9366/Camiseta_Titular_River_Plate_23-24_Blanco_HT3679_01_laydown.jpg"
+              alt="..."
+            />
+            <MDBCarouselItem
+              className="w-100 d-block my-custom-carousel-item"
+              itemId={2}
+              src="https://pbs.twimg.com/media/CQfjMNEWUAA3BFc.jpg"
+              alt="..."
+            />
+            <MDBCarouselItem
+              className="w-100 d-block my-custom-carousel-item"
+              itemId={3}
+              src="https://sporting.vteximg.com.br/arquivos/ids/201295-1000-1000/1640020-000-1.jpg?v=637152942987430000"
+              alt="..."
+            />
+          </MDBCarousel>
+        </div>
+        <div className="text-center">
+          <h4>Camisetas Europeas</h4>
+          <MDBCarousel fade>
+            <MDBCarouselItem
+              className="w-100 d-block my-custom-carousel-item"
+              itemId={1}
+              src="https://img.planetafobal.com/2013/08/real-madrid-adidas-titular-2013-2014-camiseta.jpg"
+              alt="..."
+            />
+            <MDBCarouselItem
+              className="w-100 d-block my-custom-carousel-item"
+              itemId={2}
+              src="https://www.footpack.fr/wp-content/uploads/2020/06/maillot-domicile-bayern-munich-2020-2021-adidas-4-300x300.jpg"
+              alt="..."
+            />
+            <MDBCarouselItem
+              className="w-100 d-block my-custom-carousel-item"
+              itemId={3}
+              src="https://th.bing.com/th/id/OIP.Pbs6dp8ZMx_FRgNi0qhr_gHaHa?pid=ImgDet&rs=1"
+              alt="..."
+            />
+          </MDBCarousel>
+        </div>
+      </div>
+      {/* {" "}
       <h1>Algunos productos</h1>
       <div className="d-flex justify-content-around">
         <Card style={{ width: "18rem" }}>
@@ -67,7 +118,7 @@ export default function Home() {
           </Card.Body>
         </Card>
       </div>
-      <footer>Sobre Nosotros</footer>
+      <footer>Sobre Nosotros</footer> */}
     </>
   );
 }
