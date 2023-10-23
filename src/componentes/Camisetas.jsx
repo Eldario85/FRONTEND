@@ -3,27 +3,23 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-
 import Card from "react-bootstrap/Card";
-import Placeholder from "react-bootstrap/Placeholder";
-import { CardBody } from "react-bootstrap";
 
-export class Productos extends Component {
+class Productos extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       productos: [],
       modal: false,
+      idToDelete: null,
     };
+
     this.handleClickDelete = this.handleClickDelete.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.showModal = this.showModal.bind(this);
   }
 
-  // funcion ejecutada al montar el componente, tras ejecutarse el render,
-  // este metodo realiza un fetch al endpoint listar()
-  // para traer el listado de vehiculos y setearlos en en estado "vehiculos"
   componentDidMount() {
     let parametros = {
       method: "GET",
@@ -34,21 +30,18 @@ export class Productos extends Component {
     };
 
     fetch("http://localhost:8000/camisetas", parametros)
-      .then((res) => {
-        return res.json().then((body) => {
-          return {
-            status: res.status,
-            ok: res.ok,
-            headers: res.headers,
-            body: body,
-          };
-        });
-      })
+      .then((res) =>
+        res.json().then((body) => ({
+          status: res.status,
+          ok: res.ok,
+          headers: res.headers,
+          body: body,
+        }))
+      )
       .then((result) => {
         if (result.ok) {
           this.setState({
             productos: result.body,
-            //siempre que se monta el componente el modal tiene que estar cerrado
             modal: false,
           });
         } else {
@@ -64,9 +57,7 @@ export class Productos extends Component {
           });
         }
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => console.log(error));
   }
 
   closeModal() {
@@ -88,22 +79,19 @@ export class Productos extends Component {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        // Accept: "application/json",
       },
     };
-    //this.state.idToDelete se carga cuando abrimos el modal con showModal(vehiculo_id)
+
     const url = `http://localhost:8000/camisetas/${this.state.idToDelete}`;
     fetch(url, parametros)
-      .then((res) => {
-        return res.json().then((body) => {
-          return {
-            status: res.status,
-            ok: res.ok,
-            headers: res.headers,
-            body: body,
-          };
-        });
-      })
+      .then((res) =>
+        res.json().then((body) => ({
+          status: res.status,
+          ok: res.ok,
+          headers: res.headers,
+          body: body,
+        }))
+      )
       .then((result) => {
         if (result.ok) {
           toast.success(result.body.message, {
@@ -116,7 +104,6 @@ export class Productos extends Component {
             progress: undefined,
             theme: "light",
           });
-          //al finalizar la eliminacion volvemos a invocar el componentDidMount() para recargar nuestro listado
           this.componentDidMount();
         } else {
           toast.error(result.body.message, {
@@ -131,21 +118,19 @@ export class Productos extends Component {
           });
         }
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => console.log(error));
   }
 
   render() {
     const cards = this.state.productos.map((producto, index) => (
-      <div key={index} class="d-flex justify-content-around">
+      <div key={index} className="d-flex justify-content-around">
         <Card style={{ width: "18rem" }}>
           <Card.Img variant="top" src={producto.imagen_url} />
           <Card.Body>
             <Card.Title>{producto.nombre_del_producto}</Card.Title>
             <Card.Text>{producto.descripcion}</Card.Text>
-            <Card.Text>Precio: $ {producto.precio}</Card.Text>
-            <Button variant="primary">Go somewhere</Button>
+            <Card.Text>Precio: ${producto.precio}</Card.Text>
+            <Button variant="primary">Agregar al carrito</Button>
           </Card.Body>
           <Link
             to={`/camisetas/edit/${producto.camiseta_id}`}
@@ -155,7 +140,7 @@ export class Productos extends Component {
           </Link>
           <button
             className="btn btn-danger"
-            onClick={() => showModal(producto.camiseta_id)}
+            onClick={() => this.showModal(producto.camiseta_id)}
           >
             <span className="material-symbols-outlined">delete</span>
           </button>
@@ -193,4 +178,5 @@ export class Productos extends Component {
     );
   }
 }
+
 export default Productos;
