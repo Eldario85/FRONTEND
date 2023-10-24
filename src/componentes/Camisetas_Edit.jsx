@@ -61,7 +61,7 @@ export class Internal_Productos_Edit extends Component {
     //       console.log(error);
     //     });
     // };
-    if (this.props.params.camiseta_id) {
+    if (this.props.params.id) {
       let parametros = {
         method: "GET",
         headers: {

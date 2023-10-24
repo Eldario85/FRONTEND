@@ -7,6 +7,7 @@ import Image from "react-bootstrap/Image";
 function Menu() {
   const navigate = useNavigate();
   const [token, setToken] = useState("");
+  const [nickname, setNickname]=useState("");
 
   useEffect(() => {
     const t = sessionStorage.getItem("token");
@@ -14,6 +15,12 @@ function Menu() {
       setToken(t);
     }
   });
+debugger
+  function saludo(){
+
+    let nickname = jwt_decode(sessionStorage.getItem("nickname"));
+    setNickname(nickname)
+  }
 
   function logout() {
     sessionStorage.removeItem("token");
@@ -84,7 +91,7 @@ function Menu() {
                   >
                     <span className="material-symbols-outlined">logout</span>
                   </Button>
-
+                  <h6>Bienvenido: {()=>saludo()}</h6>
                   {/* <Link to="/login" className="nav-link">
                     {" "}
                     Login
