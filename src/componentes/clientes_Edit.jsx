@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import clientes from "./clientes";
 
 export class Internal_Clientes_Edit extends Component {
   constructor(props) {
@@ -10,11 +9,11 @@ export class Internal_Clientes_Edit extends Component {
 
     this.state = {
       nickname: "",
+      email: "",
       nombre: "",
       apellido: "",
       direccion: "",
-      telefono: "",
-      email: "",
+      telefono: null,
 
       modal: false,
     };
@@ -26,47 +25,54 @@ export class Internal_Clientes_Edit extends Component {
   // modificado si es que viene dicho dato por parametro
   componentDidMount() {
     if (this.props.params.id) {
-      this.fetchCliente(this.props.params.id);
+      let parametros = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          authorization: sessionStorage.getItem("token"),
+        },
+      };
+
+      fetch(`http://localhost:8000/usuario/${this.props.params.id}`, parametros)
+        .then((res) => {
+          return res.json().then((body) => {
+            return {
+              status: res.status,
+              ok: res.ok,
+              headers: res.headers,
+              body: body,
+            };
+          });
+        })
+        .then((result) => {
+          if (result.ok) {
+            this.setState({
+              nickname: result.body.detail.nickname,
+              nombre: result.body.detail.nombre,
+              apellido: result.body.detail.apellido,
+              direccion: result.body.detail.direccion,
+              telefono: result.body.detail.telefono,
+              email: result.body.detail.email,
+            });
+          } else {
+            toast.error(result.body.message, {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   }
-
-  fetchCliente = (id) => {
-    fetch(`http://localhost:8000/usuario/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        authorization: sessionStorage.getItem("token"),
-      },
-    })
-      .then((res) => res.json())
-
-      .then((result) => {
-        if (result.ok) {
-          this.setState({
-            nombre: result.body.detail.nombre,
-            apellido: result.body.detail.apellido,
-            direccion: result.body.detail.direccion,
-            telefono: result.body.detail.telefono,
-            email: result.body.detail.email,
-            nickname: result.body.detail.nickname,
-          });
-        } else {
-          toast.error(result.body.message, {
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   // handler invocado por el evento onSubmit() del formulario, aqui hay dos caminos posibles, un POST para la creacion o un PUT para la edicion
   // eso lo diferenciamos mediante "this.props.params.vehiculo_id", acorde a su existencia debemos cambiar tanto la URL como el METHOD del fetch
@@ -74,21 +80,33 @@ export class Internal_Clientes_Edit extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { id, ...cliente } = this.state;
+    let cliente = {
+      nickname: this.state.nickname,
+      nombre: this.state.nombre,
+      apellido: this.state.apellido,
+      direccion: this.state.direccion,
+      telefono: this.state.telefono,
+      email: this.state.email,
+    };
 
-    const method = id ? "PUT" : "POST";
-    const url = id
-      ? `http://localhost:8000/usuario/${id}`
-      : "http://localhost:8000/usuario";
-
-    fetch(url, {
-      method,
+    let parametros = {
+      method: "PUT",
       body: JSON.stringify(cliente),
       headers: {
         "Content-Type": "application/json",
       },
-    })
-      .then((res) => res.json())
+    };
+    fetch(`http://localhost:8000/usuario/${this.props.params.id}`, parametros)
+      .then((res) => {
+        return res.json().then((body) => {
+          return {
+            status: res.status,
+            ok: res.ok,
+            headers: res.headers,
+            body: body,
+          };
+        });
+      })
       .then((result) => {
         if (result.ok) {
           toast.success(result.body.message, {
@@ -129,11 +147,7 @@ export class Internal_Clientes_Edit extends Component {
       <div className="container">
         <div className="row">
           <div className="col">
-            <h1>
-              {this.state.nickname
-                ? `Edicion del Cliente ${this.state.nickname}`
-                : "Alta del Cliente"}
-            </h1>
+            <h1>{`Edicion del Cliente ${this.state.nickname}`}</h1>
           </div>
         </div>
 
@@ -146,10 +160,24 @@ export class Internal_Clientes_Edit extends Component {
                   className="form-control"
                   id="floatingNickname"
                   placeholder="nickname"
+                  onChange={this.handleChange}
                   value={this.state.nickname}
                   name="nickname"
                 />
                 <label for="nickname">Nickname</label>
+              </div>
+              <br />
+              <div className="form-floating">
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  placeholder="Email"
+                  onChange={this.handleChange}
+                  value={this.state.email}
+                  name="email"
+                />
+                <label for="email">Email</label>
               </div>
               <br />
               <div className="form-floating">
@@ -206,23 +234,6 @@ export class Internal_Clientes_Edit extends Component {
                 />
                 <label for="telefono">Telefono</label>
               </div>
-              <br />
-              <br />
-
-              <div className="form-floating">
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  placeholder="Email"
-                  onChange={this.handleChange}
-                  value={this.state.email}
-                  name="email"
-                />
-                <label for="email">Email</label>
-              </div>
-              <br />
-
               <br />
 
               <input
