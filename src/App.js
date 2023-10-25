@@ -10,29 +10,37 @@ import Clientes_Edit from "./componentes/clientes_Edit";
 import Clientes from "./componentes/clientes";
 import Pedidos from "./componentes/Pedidos";
 import Pedidos_Edit from "./componentes/Pedidos_Edit";
+import contenidoCarrito from "./componentes/contenidoCarrito";
+import dataProvider from "./componentes/context/DataContext";
 
 function App() {
   return (
     <>
-      <Menu />
-      <ToastContainer />
+      <dataProvider>
+        <Menu />
+        <ToastContainer />
 
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
 
-          <Route path="/camisetas" element={<Camisetas />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/clientes/edit" element={<Clientes_Edit />}></Route>
-          <Route path="/clientes/edit/:id" element={<Clientes_Edit />}></Route>
-          <Route path="/clientes" element={<Clientes />}></Route>
-          <Route path="/camisetas/edit" element={<Camisetas_Edit />} />
-          <Route path="/camisetas/edit/:id" element={<Camisetas_Edit />} />
-          <Route path="/pedido" element={<Pedidos />} />
-          <Route path="/pedido/edit" element={<Pedidos_Edit />} />
-        </Routes>
-      </div>
-      <header className="App-header bisque-background"></header>
+            <Route path="/camisetas" element={<Camisetas />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/clientes/edit" element={<Clientes_Edit />}></Route>
+            <Route
+              path="/clientes/edit/:id"
+              element={<Clientes_Edit />}
+            ></Route>
+            <Route path="/clientes" element={<Clientes />}></Route>
+            <Route path="/camisetas/edit" element={<Camisetas_Edit />} />
+            <Route path="/camisetas/edit/:id" element={<Camisetas_Edit />} />
+            <Route path="/pedido" element={<Pedidos />} />
+            <Route path="/pedido/edit" element={<Pedidos_Edit />} />
+            <Route path="/carrito" element={<contenidoCarrito />} />
+          </Routes>
+        </div>
+        <header className="App-header bisque-background"></header>
+      </dataProvider>
     </>
   );
 }

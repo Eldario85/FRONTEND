@@ -21,9 +21,9 @@ function Menu() {
     navigate("/");
   }
 
-  // const token = sessionStorage.getItem('token')
+  //const token = sessionStorage.getItem("token");
   if (token !== "" && token !== null) {
-    // var decoded = jwt_decode(token);
+    var decoded = jwt_decode(token);
     return (
       <>
         <nav
@@ -76,7 +76,10 @@ function Menu() {
                     Clientes
                   </Link>
                 </li>
-
+                <li className="nav-item">
+                  <Link to={"/carrito"}>🛒</Link>
+                </li>
+                <h5>Bienvenido: {decoded.nickname}</h5>
                 <li className="nav-item">
                   <Button
                     className="btn btn-outline-danger btn-sm"
