@@ -22,7 +22,7 @@ class Clientes extends Component {
         authorization: sessionStorage.getItem("token"),
       },
     };
-    debugger;
+
     fetch("http://localhost:8000/usuario", parametros)
       .then((res) =>
         res.json().then((body) => ({
@@ -108,58 +108,59 @@ class Clientes extends Component {
           </div>
         </>
       );
-    } else {
-      return (
-        <>
-          <div>
-            <table className="table  table-striped">
-              <thead>
-                <tr>
-                  <th>Nickname</th>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>Direccion</th>
-                  <th>Telefono</th>
-                  <th>Mail</th>
-
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {" "}
-                <tr>
-                  <td>{this.state.clientes.nickname}</td>
-                  <td>{this.state.clientes.nombre}</td>
-                  <td>{this.state.clientes.apellido}</td>
-                  <td>{this.state.clientes.direccion}</td>
-                  <td>{this.state.clientes.telefono}</td>
-                  <td>{this.state.clientes.email}</td>
-
-                  <td>
-                    <Link
-                      to={{
-                        pathname: `/clientes/edit/${this.state.clientes.user_id}`,
-                        state: { Clientes },
-                      }}
-                      className="btn btn-primary"
-                    >
-                      <span className="material-symbols-outlined">edit</span>
-                    </Link>
-                  </td>
-                </tr>
-              </tbody>
-              {/* <Link to={`/clientes/edit`} className="btn btn-primary">
-                <span className="material-symbols-outlined">editar</span>
-              </Link> */}
-            </table>
-            <br />
-            {/* <Link to="/clientes/edit" className="btn btn-info">
-              Nuevo Cliente
-            </Link> */}
-          </div>
-        </>
-      );
     }
+    // else {
+    //   return (
+    //     <>
+    //       <div>
+    //         <table className="table  table-striped">
+    //           <thead>
+    //             <tr>
+    //               <th>Nickname</th>
+    //               <th>Nombre</th>
+    //               <th>Apellido</th>
+    //               <th>Direccion</th>
+    //               <th>Telefono</th>
+    //               <th>Mail</th>
+
+    //               <th>Acciones</th>
+    //             </tr>
+    //           </thead>
+    //           <tbody>
+    //             {" "}
+    //             <tr>
+    //               <td>{this.state.clientes.nickname}</td>
+    //               <td>{this.state.clientes.nombre}</td>
+    //               <td>{this.state.clientes.apellido}</td>
+    //               <td>{this.state.clientes.direccion}</td>
+    //               <td>{this.state.clientes.telefono}</td>
+    //               <td>{this.state.clientes.email}</td>
+
+    //               <td>
+    //                 <Link
+    //                   to={{
+    //                     pathname: `/clientes/edit/${this.state.clientes.user_id}`,
+    //                     state: { Clientes },
+    //                   }}
+    //                   className="btn btn-primary"
+    //                 >
+    //                   <span className="material-symbols-outlined">edit</span>
+    //                 </Link>
+    //               </td>
+    //             </tr>
+    //           </tbody>
+    //           {/* <Link to={`/clientes/edit`} className="btn btn-primary">
+    //             <span className="material-symbols-outlined">editar</span>
+    //           </Link> */}
+    //         </table>
+    //         <br />
+    //         {/* <Link to="/clientes/edit" className="btn btn-info">
+    //           Nuevo Cliente
+    //         </Link> */}
+    //       </div>
+    //     </>
+    //   );
+    // }
   }
 }
 
