@@ -14,6 +14,7 @@ export class Internal_Clientes_Edit extends Component {
       apellido: "",
       direccion: "",
       telefono: null,
+      password: "",
 
       modal: false,
     };
@@ -54,6 +55,7 @@ export class Internal_Clientes_Edit extends Component {
               direccion: result.body.detail.direccion,
               telefono: result.body.detail.telefono,
               email: result.body.detail.email,
+              password: result.body.detail.password,
             });
           } else {
             toast.error(result.body.message, {
@@ -87,6 +89,7 @@ export class Internal_Clientes_Edit extends Component {
       direccion: this.state.direccion,
       telefono: this.state.telefono,
       email: this.state.email,
+      password: this.state.password,
     };
 
     let parametros = {
@@ -94,6 +97,7 @@ export class Internal_Clientes_Edit extends Component {
       body: JSON.stringify(cliente),
       headers: {
         "Content-Type": "application/json",
+        authorization: sessionStorage.getItem("token"),
       },
     };
     fetch(`http://localhost:8000/usuario/${this.props.params.id}`, parametros)
@@ -235,6 +239,18 @@ export class Internal_Clientes_Edit extends Component {
                 <label for="telefono">Telefono</label>
               </div>
               <br />
+              <div className="form-floating display-none">
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                  value={this.state.password}
+                  name="password"
+                />
+                <label for="password">Password</label>
+              </div>
 
               <input
                 className="btn btn-primary"

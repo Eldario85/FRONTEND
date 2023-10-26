@@ -66,7 +66,7 @@ function InternalLogin({ navigate }) {
           } else {
             sessionStorage.setItem("token", result.body.token);
 
-            toast.success(`Bienvenido, ${usuario.nickname}`, {
+            toast.success(`Bienvenido, ${(usuario.nickname).toUpperCase()}`, {
               position: "bottom-center",
               autoClose: 5000,
               hideProgressBar: false,

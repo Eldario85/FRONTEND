@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Internal_Productos_Edit(props) {
+export default function Camisetas_Edit() {
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [precio, setPrecio] = useState(null);
@@ -62,7 +62,7 @@ function Internal_Productos_Edit(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const producto = {
+    const camiseta = {
       nombre: nombre,
       descripcion: descripcion,
       precio: precio,
@@ -251,13 +251,13 @@ function Internal_Productos_Edit(props) {
   );
 }
 
-export default function Productos_Edit() {
-  const params = useParams();
-  const navigate = useNavigate();
+// {
+//   const params = useParams();
+//   const navigate = useNavigate();
 
-  return (
-    <>
-      <Internal_Productos_Edit params={params} navigate={navigate} />
-    </>
-  );
-}
+//   return (
+//     <>
+//       <Internal_Productos_Edit params={params} navigate={navigate} />
+//     </>
+//   );
+// }

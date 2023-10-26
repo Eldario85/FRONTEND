@@ -76,10 +76,11 @@ function Menu() {
                     Clientes
                   </Link>
                 </li>
+                
+                <h5>Bienvenido: {decoded.nickname}</h5>
                 <li className="nav-item">
                   <Link to={"/carrito"}>🛒</Link>
                 </li>
-                <h5>Bienvenido: {decoded.nickname}</h5>
                 <li className="nav-item">
                   <Button
                     className="btn btn-outline-danger btn-sm"

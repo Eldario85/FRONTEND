@@ -7,8 +7,8 @@ import Card from "react-bootstrap/Card";
 import { dataContext } from "./context/DataContext";
 import { useContext } from "react";
 
-const Productos = () => {
-  const [productos, setProductos] = useState([]);
+const Camisetas = () => {
+  const [camisetas, setCamisetas] = useState([]);
   const [modal, setModal] = useState(false);
   const [idToDelete, setIdToDelete] = useState(null);
   const { cart, setCart } = useContext(dataContext) || {};
@@ -28,6 +28,7 @@ const Productos = () => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        authorization: sessionStorage.getItem("token")
       },
     };
 
@@ -90,7 +91,7 @@ const Productos = () => {
       )
       .then((result) => {
         if (result.ok) {
-          setProductos(result.body);
+          setCamisetas(result.body);
           setModal(false);
         } else {
           toast.error(result.body.message, {
@@ -108,32 +109,32 @@ const Productos = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  const Comprar = (producto) => {
+  const Comprar = (camisetas) => {
     console.log("me compraste");
-    setCart([...cart, producto]);
+    setCart([...cart, camiseta]);
   };
 
-  const cards = productos.map((producto, index) => (
+  const cards = camisetas.map((camiseta, index) => (
     <div key={index} className="d-flex justify-content-around">
       <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={producto.imagen_url} />
+        <Card.Img variant="top" src={camiseta.imagen_url} />
         <Card.Body>
-          <Card.Title>{producto.nombre_del_producto}</Card.Title>
-          <Card.Text>{producto.descripcion}</Card.Text>
-          <Card.Text>Precio: ${producto.precio}</Card.Text>
+          <Card.Title>{camiseta.nombre_del_producto}</Card.Title>
+          <Card.Text>{camiseta.descripcion}</Card.Text>
+          <Card.Text>Precio: ${camiseta.precio}</Card.Text>
           <Button variant="primary" onClick={Comprar}>
             Agregar al carrito
           </Button>
         </Card.Body>
         <Link
-          to={`/camisetas/edit/${producto.camiseta_id}`}
+          to={`/camisetas/edit/${camiseta.camiseta_id}`}
           className="btn btn-primary"
         >
           <span className="material-symbols-outlined">edit</span>
         </Link>
         <button
           className="btn btn-danger"
-          onClick={() => showModal(producto.camiseta_id)}
+          onClick={() => showModal(camiseta.camiseta_id)}
         >
           <span className="material-symbols-outlined">delete</span>
         </button>
@@ -171,4 +172,4 @@ const Productos = () => {
   );
 };
 
-export default Productos;
+export default Camisetas;
