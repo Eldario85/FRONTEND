@@ -11,7 +11,7 @@ const Productos = () => {
   const [productos, setProductos] = useState([]);
   const [modal, setModal] = useState(false);
   const [idToDelete, setIdToDelete] = useState(null);
-  const { cart, setCart } = useContext(dataContext) || {};
+  const { carrito, setCarrito } = useContext(dataContext) || {};
 
   const closeModal = () => {
     setModal(false);
@@ -110,7 +110,7 @@ const Productos = () => {
 
   const Comprar = (producto) => {
     console.log("me compraste");
-    setCart([...cart, producto]);
+    setCarrito([...carrito, producto]);
   };
 
   const cards = productos.map((producto, index) => (

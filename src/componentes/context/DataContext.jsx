@@ -4,13 +4,13 @@ export const dataContext = createContext();
 
 const DataProvider = ({ children }) => {
   const [data, setData] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [carrito, setCarritto] = useState([]);
   debugger;
   useEffect(() => {
     fetch("http://localhost:8000/camisetas").then((res) => setData(res.data));
   });
   return (
-    <dataContext.Provider value={{ data, cart, setCart }}>
+    <dataContext.Provider value={{ data, carrito, setCarritto }}>
       {children}
     </dataContext.Provider>
   );

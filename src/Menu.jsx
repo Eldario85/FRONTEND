@@ -1,8 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
+import "./App.css";
 
 function Menu() {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ function Menu() {
   //const token = sessionStorage.getItem("token");
   if (token !== "" && token !== null) {
     var decoded = jwt_decode(token);
+
     return (
       <>
         <nav
@@ -76,16 +78,24 @@ function Menu() {
                     Clientes
                   </Link>
                 </li>
+                <Link to={`/clientes/edit/${decoded.user_id}`}>
+                  Bienvenido: {decoded.nickname}
+                </Link>{" "}
                 <li className="nav-item">
-                  <Link to={"/carrito"}>🛒</Link>
-                </li>
-                <h5>Bienvenido: {decoded.nickname}</h5>
-                <li className="nav-item">
+                  <Link to={"/carrito"}> 🛒</Link>
+                </li>{" "}
+                <li
+                  className="nav-item btn-sm margin-left:auto"
+                  id="boton-logout"
+                >
                   <Button
-                    className="btn btn-outline-danger btn-sm"
+                    className="btn btn-outline-danger ms-auto"
+                    id="boton-logout"
                     onClick={() => logout()}
                   >
-                    <span className="material-symbols-outlined">logout</span>
+                    <span className="material-symbols-outlined ms-auto">
+                      logout
+                    </span>
                   </Button>
 
                   {/* <Link to="/login" className="nav-link">
