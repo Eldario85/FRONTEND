@@ -35,7 +35,7 @@ function Menu() {
           <a className=" navbar-brand" href="#">
             <Image
               className="circular"
-              src="faviconfutbol.ico.jpg"
+              src="icono messi.ico"
               roundedCircle
               width="50"
               height="50"
@@ -78,6 +78,12 @@ function Menu() {
                     Clientes
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link to="/clubes" className="nav-link">
+                    {" "}
+                    Clubes del Mundo
+                  </Link>
+                </li>
                 <Link to={`/clientes/edit/${decoded.user_id}`}>
                   Bienvenido: {decoded.nickname}
                 </Link>{" "}
@@ -90,10 +96,10 @@ function Menu() {
                 >
                   <Button
                     className="btn btn-outline-danger ms-auto"
-                    id="boton-logout"
                     onClick={() => logout()}
                   >
-                    <span className="material-symbols-outlined ms-auto">
+                    <span className="material-symbols-outlined ms-auto boton-logout">
+                      {" "}
                       logout
                     </span>
                   </Button>
@@ -120,7 +126,7 @@ function Menu() {
             <img
               className="circular"
               src="faviconfutbol.ico.jpg"
-              rounded
+              roundedCircle
               alt=""
               width="50"
               height="50"

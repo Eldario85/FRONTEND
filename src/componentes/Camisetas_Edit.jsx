@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Camisetas_Edit() {
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
+  const [imagen, setImagen] = useState("");
   const [precio, setPrecio] = useState(null);
   const [stock, setStock] = useState(null);
   const [equipo_id, setEquipoId] = useState(null);
@@ -38,6 +39,7 @@ export default function Camisetas_Edit() {
           if (result.ok) {
             setNombre(result.body.detail.nombre_del_producto);
             setDescripcion(result.body.detail.descripcion);
+            setImagen(result.body.detail.imagen);
             setPrecio(result.body.detail.precio);
             setStock(result.body.detail.stock);
             setEquipoId(result.body.detail.equipo_id);
@@ -63,8 +65,9 @@ export default function Camisetas_Edit() {
     event.preventDefault();
 
     const camiseta = {
-      nombre: nombre,
+      nombre_del_producto: nombre,
       descripcion: descripcion,
+      imagen: imagen,
       precio: precio,
       stock: stock,
       equipo_id: equipo_id,
@@ -73,9 +76,11 @@ export default function Camisetas_Edit() {
 
     const parametros = {
       method: id ? "PUT" : "POST",
-      body: JSON.stringify(producto),
+      body: JSON.stringify(camiseta),
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
+        authorization: sessionStorage.getItem("token"),
       },
     };
 
@@ -130,6 +135,9 @@ export default function Camisetas_Edit() {
       case "descripcion":
         setDescripcion(value);
         break;
+      case "imagen":
+        setImagen(value);
+        break;
       case "precio":
         setPrecio(value);
         break;
@@ -182,6 +190,19 @@ export default function Camisetas_Edit() {
                 name="descripcion"
               />
               <label htmlFor="floatingDescripcion">Descripcion</label>
+            </div>
+            <br />
+            <div className="form-floating">
+              <input
+                type="url"
+                className="form-control"
+                id="floatingImagen"
+                placeholder="Imagen"
+                onChange={handleChange}
+                value={imagen}
+                name="imagen"
+              />
+              <label htmlFor="floatingImagen">Imagen</label>
             </div>
             <br />
 

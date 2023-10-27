@@ -9,8 +9,8 @@ import { MDBCarousel, MDBCarouselItem } from "mdb-react-ui-kit";
 export default function Home() {
   return (
     <>
-      <div className="d-flex justify-content-around">
-        <div className="text-center">
+      <div className="d-flex justify-content-around fondo-home">
+        <div className="text-center titulos">
           <h4>Camisetas Argentinas</h4>
           <MDBCarousel fade>
             <MDBCarouselItem
@@ -31,9 +31,15 @@ export default function Home() {
               src="https://sporting.vteximg.com.br/arquivos/ids/201295-1000-1000/1640020-000-1.jpg?v=637152942987430000"
               alt="..."
             />
+            <MDBCarouselItem
+              className="w-100 d-block my-custom-carousel-item"
+              itemId={4}
+              src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/43b3d5dca79c4970ba7d510045536008_9366/Camiseta_Titular_Boca_Juniors_23-24_Azul_IV1922_01_laydown.jpg"
+              alt="..."
+            />
           </MDBCarousel>
         </div>
-        <div className="text-center">
+        <div className="text-center titulos">
           <h4>Camisetas Europeas</h4>
           <MDBCarousel fade>
             <MDBCarouselItem
@@ -52,6 +58,23 @@ export default function Home() {
               className="w-100 d-block my-custom-carousel-item"
               itemId={3}
               src="https://th.bing.com/th/id/OIP.Pbs6dp8ZMx_FRgNi0qhr_gHaHa?pid=ImgDet&rs=1"
+              alt="..."
+            />
+          </MDBCarousel>
+        </div>
+        <div className="text-center titulos">
+          <h4>Otras Camisetas</h4>
+          <MDBCarousel fade>
+            <MDBCarouselItem
+              className="w-100 d-block my-custom-carousel-item"
+              itemId={1}
+              src="https://celadasa.vtexassets.com/arquivos/ids/241776-800-auto?v=638327255432300000&width=800&height=auto&aspect=true"
+              alt="..."
+            />
+            <MDBCarouselItem
+              className="w-100 d-block my-custom-carousel-item"
+              itemId={2}
+              src="https://acdn.mitiendanube.com/stores/002/240/024/products/unnamed-21-5aea549f9b2dc843c316784122907992-1024-1024.webp"
               alt="..."
             />
           </MDBCarousel>
