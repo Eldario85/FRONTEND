@@ -194,7 +194,7 @@ export default function Camisetas_Edit() {
             <br />
             <div className="form-floating">
               <input
-                type="url"
+                type="text"
                 className="form-control"
                 id="floatingImagen"
                 placeholder="Imagen"

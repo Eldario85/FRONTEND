@@ -1,0 +1,36 @@
+{
+    "clubes": [
+        {
+            "nombre": "River Plate",
+            "fecha_fundacion": "25 de mayo de 1901",
+            "lugar_origen": "Buenos Aires, Argentina",
+            "liga": "Liga Profesional de Fútbol de Argentina",
+            "estadio": "Estadio Monumental Antonio Vespucio Liberti",
+            "capitan": "Enzo Pérez"
+        },
+        {
+            "nombre": "Independiente",
+            "fecha_fundacion": "1 de enero de 1905",
+            "lugar_origen": "Avellaneda, Argentina",
+            "liga": "Liga Profesional de Fútbol de Argentina",
+            "estadio": "Estadio Libertadores de América",
+            "capitan": "Silvio Romero"
+        },
+        {
+            "nombre": "Real Madrid",
+            "fecha_fundacion": "6 de marzo de 1902",
+            "lugar_origen": "Madrid, España",
+            "liga": "La Liga",
+            "estadio": "Estadio Santiago Bernabéu",
+            "capitan": "Sergio Ramos"
+        },
+        {
+            "nombre": "Inter Miami",
+            "fecha_fundacion": "25 de enero de 2018",
+            "lugar_origen": "Miami, Estados Unidos",
+            "liga": "Major League Soccer",
+            "estadio": "DRV PNK Stadium",
+            "capitan": "Gonzalo Higuaín"
+        }
+    ]
+}

@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Card from "react-bootstrap/Card";
+import { useNavigate, useParams } from "react-router-dom";
 import { dataContext } from "./context/DataContext";
 import { useContext } from "react";
 
@@ -11,16 +12,19 @@ const Camisetas = () => {
   const [camisetas, setCamisetas] = useState([]);
   const [modal, setModal] = useState(false);
   const [idToDelete, setIdToDelete] = useState(null);
-  const { carrito, setCarrito } = useContext(dataContext) || {};
+  // const { carrito, setCarrito } = useContext(dataContext) || {};
+  const navigate = useNavigate();
 
   const closeModal = () => {
     setModal(false);
     setIdToDelete(null);
+    navigate("/camisetas")
   };
 
   const showModal = (id) => {
     setModal(true);
     setIdToDelete(id);
+    navigate("/camisetas")
   };
 
   const handleClickDelete = () => {
@@ -54,7 +58,8 @@ const Camisetas = () => {
             progress: undefined,
             theme: "light",
           });
-          componentDidMount();
+          navigate("/camisetas")
+          setModal(false);
         } else {
           toast.error(result.body.message, {
             position: "bottom-center",
@@ -117,7 +122,7 @@ const Camisetas = () => {
   const cards = camisetas.map((camiseta, index) => (
     <div key={index} className="d-flex justify-content-around">
       <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={camiseta.imagen_url} />
+        <Card.Img variant="top" src={camiseta.imagen} />
         <Card.Body>
           <Card.Title>{camiseta.nombre_del_producto}</Card.Title>
           <Card.Text>{camiseta.descripcion}</Card.Text>

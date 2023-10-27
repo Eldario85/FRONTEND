@@ -12,6 +12,7 @@ import Pedidos from "./componentes/Pedidos";
 import Pedidos_Edit from "./componentes/Pedidos_Edit";
 import contenidoCarrito from "./componentes/contenidoCarrito";
 import dataProvider from "./componentes/context/DataContext";
+import Clubes from "./componentes/Clubes";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/pedido" element={<Pedidos />} />
             <Route path="/pedido/edit" element={<Pedidos_Edit />} />
             <Route path="/carrito" element={<contenidoCarrito />} />
+            <Route path="/clubes" element={<Clubes />} />
           </Routes>
         </div>
         <header className="App-header bisque-background"></header>
