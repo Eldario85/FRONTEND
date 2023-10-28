@@ -10,14 +10,15 @@ import Clientes_Edit from "./componentes/clientes_Edit";
 import Clientes from "./componentes/clientes";
 import Pedidos from "./componentes/Pedidos";
 import Pedidos_Edit from "./componentes/Pedidos_Edit";
-import contenidoCarrito from "./componentes/contenidoCarrito";
-import dataProvider from "./componentes/context/DataContext";
+import DataProvider from "./componentes/Context/DataContext";
 import Clubes from "./componentes/Clubes";
+import Products from "./componentes/Products";
+import CartContent from "./componentes/CartContent/CartContent";
 
 function App() {
   return (
     <>
-      <dataProvider>
+      <DataProvider>
         <Menu />
         <ToastContainer />
 
@@ -37,12 +38,13 @@ function App() {
             <Route path="/camisetas/edit/:id" element={<Camisetas_Edit />} />
             <Route path="/pedido" element={<Pedidos />} />
             <Route path="/pedido/edit" element={<Pedidos_Edit />} />
-            <Route path="/carrito" element={<contenidoCarrito />} />
+            <Route path="/carrito" element={<CartContent />} />
             <Route path="/clubes" element={<Clubes />} />
+            <Route path="/productos" element={<Products />} />
           </Routes>
         </div>
         <header className="App-header bisque-background"></header>
-      </dataProvider>
+      </DataProvider>
     </>
   );
 }

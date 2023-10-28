@@ -1,36 +1,106 @@
-{
-    "clubes": [
+ [
         {
+            "id": 1,
+            "escudo_img":"https://i.pinimg.com/originals/93/13/51/931351e86e8048f6f58ee5aa97076574.png",
             "nombre": "River Plate",
             "fecha_fundacion": "25 de mayo de 1901",
             "lugar_origen": "Buenos Aires, Argentina",
             "liga": "Liga Profesional de Fútbol de Argentina",
             "estadio": "Estadio Monumental Antonio Vespucio Liberti",
-            "capitan": "Enzo Pérez"
+            "Dt": "Martin Demichelis",
+            "sitio_oficial": "https://www.cariverplate.com.ar/"
         },
         {
+            "id": 2,
+            "escudo_img":"https://th.bing.com/th/id/OIP.R7QJQjMzzSGWkiyGp9OWGwHaHa?pid=ImgDet&rs=1",
             "nombre": "Independiente",
             "fecha_fundacion": "1 de enero de 1905",
             "lugar_origen": "Avellaneda, Argentina",
             "liga": "Liga Profesional de Fútbol de Argentina",
             "estadio": "Estadio Libertadores de América",
-            "capitan": "Silvio Romero"
+            "Dt": "Carlos Tevez",
+            "sitio_oficial": "https://www.clubaindependiente.com.ar/"
         },
         {
+            "id": 3,
+            "escudo_img":"https://vignette.wikia.nocookie.net/tsubasa/images/4/4d/Real_madrid_logo.png/revision/latest/scale-to-width-down/480?cb=20100806172726&path-prefix=it",
             "nombre": "Real Madrid",
             "fecha_fundacion": "6 de marzo de 1902",
             "lugar_origen": "Madrid, España",
             "liga": "La Liga",
             "estadio": "Estadio Santiago Bernabéu",
-            "capitan": "Sergio Ramos"
+            "Dt": "Carlo Ancelotti",
+            "sitio_oficial": "https://www.realmadrid.com/"
         },
         {
+            "id": 4,
+            "escudo_img":"https://logodownload.org/wp-content/uploads/2020/11/Inter-miami-cf-logo-1.png",
             "nombre": "Inter Miami",
             "fecha_fundacion": "25 de enero de 2018",
             "lugar_origen": "Miami, Estados Unidos",
             "liga": "Major League Soccer",
             "estadio": "DRV PNK Stadium",
-            "capitan": "Gonzalo Higuaín"
+            "Dt": "Gerardo Martino",
+            "sitio_oficial": "https://es.intermiamicf.com/"
+        },
+        {
+            "id": 5,
+            "escudo_img": "https://logodownload.org/wp-content/uploads/2016/10/Boca-Juniors-logo-escudo.png",
+            "nombre": "Boca Juniors",
+            "fecha_fundacion": "3 de abril de 1905",
+            "lugar_origen": "Buenos Aires, Argentina",
+            "liga": "Liga Profesional de Fútbol de Argentina",
+            "estadio": "Estadio Alberto J. Armando (La Bombonera)",
+            "Dt": "Juan Román Riquelme",
+            "sitio_oficial": "https://www.bocajuniors.com.ar/"
+        },
+        {
+            "id": 6,
+            "escudo_img": "https://logodownload.org/wp-content/uploads/2018/10/racing-logo-escudo-3-493x599.png",
+            "nombre": "Racing Club",
+            "fecha_fundacion": "25 de marzo de 1903",
+            "lugar_origen": "Avellaneda, Argentina",
+            "liga": "Liga Profesional de Fútbol de Argentina",
+            "estadio": "Estadio Presidente Perón",
+            "Dt": "Diego Milito",
+            "sitio_oficial": "https://www.racingclub.com.ar/"
+        },
+        {
+            "id": 7,
+            "escudo_img": "https://logodownload.org/wp-content/uploads/2015/05/Barcelona-logo-escudo.png",
+            "nombre": "FC Barcelona",
+            "fecha_fundacion": "29 de noviembre de 1899",
+            "lugar_origen": "Barcelona, España",
+            "liga": "La Liga",
+            "estadio": "Camp Nou",
+            "Dt": "Xavi Hernandez",
+            "sitio_oficial": "https://www.fcbarcelona.com/"
+        },
+        {
+            "id": 8,
+            "escudo_img": "https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png",
+            "nombre": "Manchester United",
+            "fecha_fundacion": "5 de marzo de 1878",
+            "lugar_origen": "Manchester, Inglaterra",
+            "liga": "Premier League",
+            "estadio": "Old Trafford",
+            "Dt": "Ralf Rangnick",
+            "sitio_oficial": "https://www.manutd.com/"
+        },
+        {
+            "id": 9,
+            "escudo_img": "https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/Manchester_City_FC_badge.svg/1200px-Manchester_City_FC_badge.svg.png",
+            "nombre": "Manchester City",
+            "fecha_fundacion": "23 de abril de 1894",
+            "lugar_origen": "Manchester, Inglaterra",
+            "liga": "Premier League",
+            "estadio": "Etihad Stadium",
+            "Dt": "Pep Guardiola",
+            "sitio_oficial": "https://www.mancity.com/"
         }
+        
+        
+        
+        
+        
     ]
-}

@@ -5,8 +5,9 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Card from "react-bootstrap/Card";
 import { useNavigate, useParams } from "react-router-dom";
-import { dataContext } from "./context/DataContext";
+import { dataContext } from "./Context/DataContext";
 import { useContext } from "react";
+import jwt_decode from "jwt-decode";
 
 const Camisetas = () => {
   const [camisetas, setCamisetas] = useState([]);
@@ -18,13 +19,13 @@ const Camisetas = () => {
   const closeModal = () => {
     setModal(false);
     setIdToDelete(null);
-    navigate("/camisetas")
+    navigate("/camisetas");
   };
 
   const showModal = (id) => {
     setModal(true);
     setIdToDelete(id);
-    navigate("/camisetas")
+    navigate("/camisetas");
   };
 
   const handleClickDelete = () => {
@@ -32,7 +33,7 @@ const Camisetas = () => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        authorization: sessionStorage.getItem("token")
+        authorization: sessionStorage.getItem("token"),
       },
     };
 
@@ -58,7 +59,7 @@ const Camisetas = () => {
             progress: undefined,
             theme: "light",
           });
-          navigate("/camisetas")
+          navigate("/camisetas");
           setModal(false);
         } else {
           toast.error(result.body.message, {
@@ -119,6 +120,9 @@ const Camisetas = () => {
     setCarrito([...carrito, producto]);
   };
 
+  var tokenDecoded = jwt_decode(sessionStorage.getItem("token"));
+  const rol = tokenDecoded.rol_id;
+
   const cards = camisetas.map((camiseta, index) => (
     <div key={index} className="d-flex justify-content-around">
       <Card style={{ width: "18rem" }}>
@@ -131,18 +135,22 @@ const Camisetas = () => {
             Agregar al carrito
           </Button>
         </Card.Body>
-        <Link
-          to={`/camisetas/edit/${camiseta.camiseta_id}`}
-          className="btn btn-primary"
-        >
-          <span className="material-symbols-outlined">edit</span>
-        </Link>
-        <button
-          className="btn btn-danger"
-          onClick={() => showModal(camiseta.camiseta_id)}
-        >
-          <span className="material-symbols-outlined">delete</span>
-        </button>
+        {rol === 1 ? (
+          <Link
+            to={`/camisetas/edit/${camiseta.camiseta_id}`}
+            className="btn btn-primary"
+          >
+            <span className="material-symbols-outlined">edit</span>
+          </Link>
+        ) : null}
+        {rol === 1 ? (
+          <button
+            className="btn btn-danger"
+            onClick={() => showModal(camiseta.camiseta_id)}
+          >
+            <span className="material-symbols-outlined">delete</span>
+          </button>
+        ) : null}
       </Card>
     </div>
   ));
@@ -152,9 +160,11 @@ const Camisetas = () => {
       <div className="d-flex justify-content-around">
         {cards}
         <br />
-        <Link to="/camisetas/edit" className="btn btn-info">
-          Nuevo Producto
-        </Link>
+        {rol === 1 ? (
+          <Link to="/camisetas/edit" className="btn btn-info">
+            Nuevo Producto
+          </Link>
+        ) : null}
       </div>
 
       <Modal show={modal} onHide={closeModal}>

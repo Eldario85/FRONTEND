@@ -1,9 +1,15 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
-import "./App.css";
+import "./Menu.css";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { FiHome } from "react-icons/fi";
+import { FaTshirt } from "react-icons/fa";
+import { IoIosFootball } from "react-icons/io";
 
 function Menu() {
   const navigate = useNavigate();
@@ -25,141 +31,120 @@ function Menu() {
   //const token = sessionStorage.getItem("token");
   if (token !== "" && token !== null) {
     var decoded = jwt_decode(token);
+    var tokenDecoded = jwt_decode(sessionStorage.getItem("token"));
+    const rol = tokenDecoded.rol_id;
 
     return (
       <>
-        <nav
-          className="navbar navbar-expand-lg bg-primary"
+        <Navbar
+          expand="lg"
+          className=" navbar-expand-lg bg-primary"
           data-bs-theme="dark"
         >
-          <a className=" navbar-brand" href="#">
-            <Image
-              className="circular"
-              src="icono messi.ico"
-              roundedCircle
-              width="50"
-              height="50"
-            />
-          </a>
-
-          <div className="container">
-            <Link to="/" className="nav-link">
-              {" "}
-              Home
-            </Link>
-            <Button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              aria-controls="navbarNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </Button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <Link to="/camisetas" className="nav-link">
-                    {" "}
-                    Camisetas
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/pedido" className="nav-link">
-                    {" "}
-                    Pedidos
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/clientes" className="nav-link">
-                    {" "}
-                    Clientes
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/clubes" className="nav-link">
-                    {" "}
-                    Clubes del Mundo
-                  </Link>
-                </li>
+          <Container>
+            <Navbar.Brand href="#home">
+              <Image
+                className="circular"
+                src="icono messi.ico"
+                roundedCircle
+                width="50"
+                height="50"
+              />
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link href="/">
+                  Home <FiHome />
+                </Nav.Link>
+                <Nav.Link href="/camisetas">
+                  Camisetas <FaTshirt />
+                </Nav.Link>
+                <Nav.Link href="/pedido">Pedidos</Nav.Link>
+                {rol === 1 ? (
+                  <Nav.Link href="/clientes">Clientes</Nav.Link>
+                ) : null}
+                <Nav.Link href="/clubes">
+                  Clubes <IoIosFootball />
+                </Nav.Link>
+                <Nav.Link href="/productos">
+                  Products <IoIosFootball />
+                </Nav.Link>
                 <Link to={`/clientes/edit/${decoded.user_id}`}>
                   Bienvenido: {decoded.nickname}
                 </Link>{" "}
-                <li className="nav-item">
-                  <Link to={"/carrito"}> 🛒</Link>
-                </li>{" "}
-                <li
-                  className="nav-item btn-sm margin-left:auto"
-                  id="boton-logout"
+                <Link className="seeCarrito" to={"/carrito"}>
+                  {" "}
+                  🛒
+                </Link>
+                <Button
+                  className="btn btn-outline-danger ms-auto boton-logout"
+                  onClick={() => logout()}
                 >
-                  <Button
-                    className="btn btn-outline-danger ms-auto"
-                    onClick={() => logout()}
-                  >
-                    <span className="material-symbols-outlined ms-auto boton-logout">
-                      {" "}
-                      logout
-                    </span>
-                  </Button>
-
-                  {/* <Link to="/login" className="nav-link">
+                  <span className="material-symbols-outlined ms-auto boton-logout">
                     {" "}
-                    Login
-                  </Link> */}
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+                    logout
+                  </span>
+                </Button>
+                <Button
+                  className="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarNav"
+                  aria-controls="navbarNav"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span className="navbar-toggler-icon"></span>
+                </Button>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
       </>
     );
   } else {
     return (
       <>
-        <nav
-          className="navbar navbar-expand-lg bg-primary"
+        <Navbar
+          expand="lg"
+          className=" navbar-expand-lg bg-primary"
           data-bs-theme="dark"
         >
-          <a className=" navbar-brand" href="#">
-            <img
-              className="circular"
-              src="faviconfutbol.ico.jpg"
-              roundedCircle
-              alt=""
-              width="50"
-              height="50"
-            />
-          </a>
-          <div className="container">
-            <Link to="/" className="nav-link">
-              {" "}
-              Inicio
-            </Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              aria-controls="navbarNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <Link to="/login" className="nav-link">
-                    {" "}
-                    Login / Registrarse
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+          <Container>
+            <Navbar.Brand href="/">
+              <Image
+                className="circular"
+                src="icono messi.ico"
+                roundedCircle
+                width="50"
+                height="50"
+              />
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link href="/">Home</Nav.Link>
+
+                <Link to="/login" className="nav-link">
+                  {" "}
+                  Login / Registrarse
+                </Link>
+                <Button
+                  className="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarNav"
+                  aria-controls="navbarNav"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span className="navbar-toggler-icon"></span>
+                </Button>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
       </>
     );
   }

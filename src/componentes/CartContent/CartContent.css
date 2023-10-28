@@ -1,0 +1,21 @@
+.carritContent{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 30px;
+}
+
+.carritContent > img{
+    height: 120px;
+    width: 100px;
+    text-align: center;
+}
+
+.carTotal{
+    text-align: center;
+}
+
+.cart-message-center{
+    text-align: center;
+    margin-top: 40px;
+}

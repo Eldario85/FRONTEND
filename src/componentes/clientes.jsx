@@ -55,60 +55,57 @@ class Clientes extends Component {
   }
 
   render() {
-    var tokenDecoded = jwt_decode(sessionStorage.getItem("token"));
-    const rol = tokenDecoded.rol_id;
-    if (rol === 1) {
-      const filas = this.state.clientes.map((cliente, index) => (
-        <tr key={index}>
-          <td>{cliente.nickname}</td>
-          <td>{cliente.nombre}</td>
-          <td>{cliente.apellido}</td>
-          <td>{cliente.direccion}</td>
-          <td>{cliente.telefono}</td>
-          <td>{cliente.email}</td>
+    const filas = this.state.clientes.map((cliente, index) => (
+      <tr key={index}>
+        <td>{cliente.nickname}</td>
+        <td>{cliente.nombre}</td>
+        <td>{cliente.apellido}</td>
+        <td>{cliente.direccion}</td>
+        <td>{cliente.telefono}</td>
+        <td>{cliente.email}</td>
 
-          <td>
-            <Link
-              to={{
-                pathname: `/clientes/edit/${cliente.user_id}`,
-                state: { cliente },
-              }}
-              className="btn btn-primary"
-            >
-              <span className="material-symbols-outlined">edit</span>
-            </Link>
-          </td>
-        </tr>
-      ));
-      return (
-        <>
-          <div>
-            <table className="table  table-striped">
-              <thead>
-                <tr>
-                  <th>Nickname</th>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>Direccion</th>
-                  <th>Telefono</th>
-                  <th>Mail</th>
+        <td>
+          <Link
+            to={{
+              pathname: `/clientes/edit/${cliente.user_id}`,
+              state: { cliente },
+            }}
+            className="btn btn-primary"
+          >
+            <span className="material-symbols-outlined">edit</span>
+          </Link>
+        </td>
+      </tr>
+    ));
+    return (
+      <>
+        <div>
+          <table className="table  table-striped">
+            <thead>
+              <tr>
+                <th>Nickname</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Mail</th>
 
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>{filas}</tbody>
-              {/* <Link to={`/clientes/edit`} className="btn btn-primary">
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>{filas}</tbody>
+            {/* <Link to={`/clientes/edit`} className="btn btn-primary">
                 <span className="material-symbols-outlined">editar</span>
               </Link> */}
-            </table>
-            <br />
-            {/* <Link to="/clientes/edit" className="btn btn-info">
+          </table>
+          <br />
+          {/* <Link to="/clientes/edit" className="btn btn-info">
               Nuevo Cliente
             </Link> */}
-          </div>
-        </>
-      );
-    }
+        </div>
+      </>
+    );
+
     // else {
     //   return (
     //     <>
