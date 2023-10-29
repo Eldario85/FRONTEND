@@ -1,15 +1,14 @@
 import React from "react";
 
-import "./App.css";
+import "./styles/App.css";
 import { MDBCarousel, MDBCarouselItem } from "mdb-react-ui-kit";
-import Products from "./componentes/Products";
 
 export default function Home() {
   return (
     <>
       <div className="d-flex justify-content-around">
-        <div className="text-center titulos">
-          <h4>Camisetas Argentinas</h4>
+        <div className="text-center ">
+          <h4 className="titulos">Camisetas Argentinas</h4>
           <MDBCarousel showControls dealy={3000}>
             <MDBCarouselItem
               className="w-100 d-block my-custom-carousel-item img-fluid"
@@ -37,8 +36,8 @@ export default function Home() {
             />
           </MDBCarousel>
         </div>
-        <div className="text-center titulos">
-          <h4>Camisetas Europeas</h4>
+        <div className="text-center ">
+          <h4 className="titulos">Camisetas Europeas</h4>
           <MDBCarousel showControls dealy={3000}>
             <MDBCarouselItem
               className="w-100 d-block my-custom-carousel-item img-fluid"
@@ -60,8 +59,8 @@ export default function Home() {
             />
           </MDBCarousel>
         </div>
-        <div className="text-center titulos">
-          <h4>Otras Camisetas</h4>
+        <div className="text-center">
+          <h4 className="titulos">Otras Camisetas</h4>
           <MDBCarousel showControls dealy={3000}>
             <MDBCarouselItem
               className="w-100 d-block my-custom-carousel-item img-fluid"
@@ -76,7 +75,6 @@ export default function Home() {
               alt="..."
             />
           </MDBCarousel>
-          <Products />
         </div>
       </div>
     </>

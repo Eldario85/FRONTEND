@@ -63,18 +63,6 @@ class Clientes extends Component {
         <td>{cliente.direccion}</td>
         <td>{cliente.telefono}</td>
         <td>{cliente.email}</td>
-
-        <td>
-          <Link
-            to={{
-              pathname: `/clientes/edit/${cliente.user_id}`,
-              state: { cliente },
-            }}
-            className="btn btn-primary"
-          >
-            <span className="material-symbols-outlined">edit</span>
-          </Link>
-        </td>
       </tr>
     ));
     return (
@@ -89,75 +77,14 @@ class Clientes extends Component {
                 <th>Direccion</th>
                 <th>Telefono</th>
                 <th>Mail</th>
-
-                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>{filas}</tbody>
-            {/* <Link to={`/clientes/edit`} className="btn btn-primary">
-                <span className="material-symbols-outlined">editar</span>
-              </Link> */}
           </table>
           <br />
-          {/* <Link to="/clientes/edit" className="btn btn-info">
-              Nuevo Cliente
-            </Link> */}
         </div>
       </>
     );
-
-    // else {
-    //   return (
-    //     <>
-    //       <div>
-    //         <table className="table  table-striped">
-    //           <thead>
-    //             <tr>
-    //               <th>Nickname</th>
-    //               <th>Nombre</th>
-    //               <th>Apellido</th>
-    //               <th>Direccion</th>
-    //               <th>Telefono</th>
-    //               <th>Mail</th>
-
-    //               <th>Acciones</th>
-    //             </tr>
-    //           </thead>
-    //           <tbody>
-    //             {" "}
-    //             <tr>
-    //               <td>{this.state.clientes.nickname}</td>
-    //               <td>{this.state.clientes.nombre}</td>
-    //               <td>{this.state.clientes.apellido}</td>
-    //               <td>{this.state.clientes.direccion}</td>
-    //               <td>{this.state.clientes.telefono}</td>
-    //               <td>{this.state.clientes.email}</td>
-
-    //               <td>
-    //                 <Link
-    //                   to={{
-    //                     pathname: `/clientes/edit/${this.state.clientes.user_id}`,
-    //                     state: { Clientes },
-    //                   }}
-    //                   className="btn btn-primary"
-    //                 >
-    //                   <span className="material-symbols-outlined">edit</span>
-    //                 </Link>
-    //               </td>
-    //             </tr>
-    //           </tbody>
-    //           {/* <Link to={`/clientes/edit`} className="btn btn-primary">
-    //             <span className="material-symbols-outlined">editar</span>
-    //           </Link> */}
-    //         </table>
-    //         <br />
-    //         {/* <Link to="/clientes/edit" className="btn btn-info">
-    //           Nuevo Cliente
-    //         </Link> */}
-    //       </div>
-    //     </>
-    //   );
-    // }
   }
 }
 

@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/App.css";
 import { ToastContainer } from "react-toastify";
 import Menu from "./Menu";
 import { Routes, Route } from "react-router-dom";
@@ -12,7 +12,7 @@ import Pedidos from "./componentes/Pedidos";
 import Pedidos_Edit from "./componentes/Pedidos_Edit";
 import DataProvider from "./componentes/Context/DataContext";
 import Clubes from "./componentes/Clubes";
-import Products from "./componentes/Products";
+
 import CartContent from "./componentes/CartContent/CartContent";
 
 function App() {
@@ -40,7 +40,6 @@ function App() {
             <Route path="/pedido/edit" element={<Pedidos_Edit />} />
             <Route path="/carrito" element={<CartContent />} />
             <Route path="/clubes" element={<Clubes />} />
-            <Route path="/productos" element={<Products />} />
           </Routes>
         </div>
         <header className="App-header bisque-background"></header>

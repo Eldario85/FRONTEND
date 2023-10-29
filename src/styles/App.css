@@ -1,0 +1,83 @@
+
+
+
+.App-header {
+  background-color: bisque;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  
+}
+
+.bisque-background {
+  background-image: url('https://e0.pxfuel.com/wallpapers/712/436/desktop-wallpaper-football-stadium-background.jpg'); 
+ 
+}
+
+.centro {
+  text-align: center;
+}
+
+.imagen {
+  width: 225px; /* Ancho de la imagen */
+  height: 200px; /* Alto de la imagen */
+}
+
+/* Contenedor de los componentes */
+.contenedor-componentes {
+  display: flex;
+  justify-content: flex-start; /* Ajusta esto según tus necesidades de espaciado */
+}
+
+/* Estilo para los componentes */
+.contenedor-componentes > * {
+  margin: 5px; /* Ajusta la cantidad de píxeles según tu preferencia */
+}
+
+
+.boton-carrito {
+  background-color: #ad745f;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.my-custom-carousel-item {
+  border-radius: 30px;
+  max-width: 350px !important;
+  max-height: 350px !important;
+grid-area: auto;
+
+}
+
+
+.boton-logout{
+align-content: end;
+
+justify-self: flex-end;
+position: right;
+;}
+
+.fondo-home{
+  background-image: url('https://e0.pxfuel.com/wallpapers/712/436/desktop-wallpaper-football-stadium-background.jpg');
+  display: inline;
+}
+
+.titulos{
+  margin-top: 20px;
+  color: aliceblue;
+  background-color: black;
+  border-radius: 30px;
+  font-size: 35px;
+  text-align: center;
+}
+.espacios{
+ background-color: #ad745f;
+
+}

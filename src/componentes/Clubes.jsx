@@ -60,7 +60,12 @@ function Clubes() {
   ));
   return (
     <div
-      style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        flexWrap: "wrap",
+        backgroundColor: "black",
+      }}
     >
       {cards}
     </div>

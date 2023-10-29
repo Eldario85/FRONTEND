@@ -1,14 +1,5 @@
-.nav-container{
-    position: sticky;
-    z-index: 3;
-    top: 0;
-
-}
-
-.navbar{
-    display: flex;
-    justify-content: space-between;
-   
+.barra-menu{
+   justify-content: space-between;
 
 }
 
@@ -17,18 +8,4 @@
     margin-left: 20px;
 
     cursor: pointer;
-}
-
-.seeCarrito{
-    font-size: 25px;
-    margin-right: 20px;
- 
-    cursor: pointer;
-    text-decoration: none;
-}
-.pala.izq{
-    position: sticky;
-    z-index: 3;
-    top: 0;
-
 }

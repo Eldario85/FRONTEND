@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "../styles/App.css";
 
 export class Internal_Clientes_Edit extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      id: "",
       nickname: "",
       email: "",
       nombre: "",
@@ -149,19 +151,19 @@ export class Internal_Clientes_Edit extends Component {
   render() {
     return (
       <div className="container">
-        <div className="row">
+        <div className="row titulos">
           <div className="col">
             <h1>{`Edicion del Cliente ${this.state.nickname}`}</h1>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col">
+        <div className="row ">
+          <div className="col ">
             <form onSubmit={this.handleSubmit}>
               <div className="form-floating">
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control "
                   id="floatingNickname"
                   placeholder="nickname"
                   onChange={this.handleChange}
@@ -239,18 +241,20 @@ export class Internal_Clientes_Edit extends Component {
                 <label for="telefono">Telefono</label>
               </div>
               <br />
-              <div className="form-floating display-none">
-                <input
-                  type="password"
-                  className="form-control"
-                  id="password"
-                  placeholder="Password"
-                  onChange={this.handleChange}
-                  value={this.state.password}
-                  name="password"
-                />
-                <label for="password">Password</label>
-              </div>
+              {this.props.id != this.props.params ? (
+                <div className="form-floating display-none">
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    placeholder="Password"
+                    onChange={this.handleChange}
+                    value={this.state.password}
+                    name="password"
+                  />
+                  <label for="password">Password</label>
+                </div>
+              ) : null}
 
               <input
                 className="btn btn-primary"

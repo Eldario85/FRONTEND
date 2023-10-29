@@ -10,7 +10,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { FiHome } from "react-icons/fi";
 import { FaTshirt } from "react-icons/fa";
 import { IoIosFootball } from "react-icons/io";
-
+import CartElements from "./componentes/CartContent/CartElements";
 function Menu() {
   const navigate = useNavigate();
   const [token, setToken] = useState("");
@@ -36,13 +36,9 @@ function Menu() {
 
     return (
       <>
-        <Navbar
-          expand="lg"
-          className=" navbar-expand-lg bg-primary"
-          data-bs-theme="dark"
-        >
-          <Container>
-            <Navbar.Brand href="#home">
+        <Navbar className="navbar bg-primary" data-bs-theme="dark">
+          <Container className="barra-menu">
+            <Navbar.Brand href="/">
               <Image
                 className="circular"
                 src="icono messi.ico"
@@ -67,16 +63,9 @@ function Menu() {
                 <Nav.Link href="/clubes">
                   Clubes <IoIosFootball />
                 </Nav.Link>
-                <Nav.Link href="/productos">
-                  Products <IoIosFootball />
-                </Nav.Link>
                 <Link to={`/clientes/edit/${decoded.user_id}`}>
                   Bienvenido: {decoded.nickname}
                 </Link>{" "}
-                <Link className="seeCarrito" to={"/carrito"}>
-                  {" "}
-                  🛒
-                </Link>
                 <Button
                   className="btn btn-outline-danger ms-auto boton-logout"
                   onClick={() => logout()}
@@ -86,19 +75,9 @@ function Menu() {
                     logout
                   </span>
                 </Button>
-                <Button
-                  className="navbar-toggler"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#navbarNav"
-                  aria-controls="navbarNav"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                >
-                  <span className="navbar-toggler-icon"></span>
-                </Button>
               </Nav>
             </Navbar.Collapse>
+            <CartElements />
           </Container>
         </Navbar>
       </>

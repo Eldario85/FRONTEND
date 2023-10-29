@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { dataContext } from "./context/DataContext";
+import { dataContext } from "../Context/DataContext";
 
 function CartTotal() {
   const { cart } = useContext(dataContext);
@@ -9,7 +9,7 @@ function CartTotal() {
 
   return (
     <div className="carTotal">
-      <h3>Total a Pagar: {total}</h3>
+      <h3>Total a Pagar: ${total}</h3>
     </div>
   );
 }
