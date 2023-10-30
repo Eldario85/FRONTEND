@@ -64,6 +64,9 @@ function Menu() {
                 {rol === 1 ? (
                   <Nav.Link href="/clientes">Clientes</Nav.Link>
                 ) : null}
+                        {rol === 1 ? (
+                  <Nav.Link href="/equipos">Equipos</Nav.Link>
+                ) : null}
                 <Nav.Link href="/clubes">
                   Clubes <IoIosFootball />
                 </Nav.Link>

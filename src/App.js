@@ -12,6 +12,7 @@ import Pedidos from "./componentes/Pedidos";
 import Pedidos_Edit from "./componentes/Pedidos_Edit";
 import DataProvider from "./componentes/Context/DataContext";
 import Clubes from "./componentes/Clubes";
+import Equipos from "./componentes/Equipos";
 
 function App() {
   return (
@@ -23,7 +24,6 @@ function App() {
         <div className="container">
           <Routes>
             <Route path="/" element={<Home />}></Route>
-
             <Route path="/camisetas" element={<Camisetas />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/clientes/edit" element={<Clientes_Edit />}></Route>
@@ -36,8 +36,8 @@ function App() {
             <Route path="/camisetas/edit/:id" element={<Camisetas_Edit />} />
             <Route path="/pedido" element={<Pedidos />} />
             <Route path="/pedido/edit" element={<Pedidos_Edit />} />
-
             <Route path="/clubes" element={<Clubes />} />
+            <Route path="/equipos" element={<Equipos />} />
           </Routes>
         </div>
       </DataProvider>

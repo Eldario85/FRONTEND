@@ -75,12 +75,8 @@ const Camisetas = () => {
             progress: undefined,
             theme: "light",
           });
-          // Actualizamos el estado del componente para que la vista se actualice
-          setCart(cart.filter((product) => product.camiseta_id !== idToDelete));
-          // Cerramos el modal
-          setModal(false);
-          // Forzamos a la página a actualizarse
-          forceUpdate();
+
+   setModal(false);
         } else {
           toast.error(result.body.message, {
             position: "bottom-center",
@@ -140,38 +136,6 @@ const Camisetas = () => {
         ))}
       </div>
 
-      {/* <div className="d-flex justify-content-around">
-        {data.map((product) => (
-          <div className="item" key={product.camiseta_id}>
-            <figure>
-              <img src={product.imagen} alt={product.nombre_del_producto} />
-            </figure>
-            <div className="info-product">
-              <h2>{product.nombre_del_producto}</h2>
-              <p className="price">${product.precio}</p>
-              <button onClick={() => AgregarCarrito(product)}>
-                Añadir al carrito
-              </button>
-              {rol === 1 ? (
-                <button
-                  className="btn btn-danger"
-                  onClick={() => showModal(product.camiseta_id)}
-                >
-                  <span className="material-symbols-outlined">delete</span>
-                </button>
-              ) : null}
-              {rol === 1 ? (
-                <Link
-                  to={`/camisetas/edit/${product.camiseta_id}`}
-                  className="btn btn-primary"
-                >
-                  <span className="material-symbols-outlined">edit</span>
-                </Link>
-              ) : null}
-            </div>
-          </div>
-        ))}
-      </div> */}
 
       <Modal show={modal} onHide={closeModal}>
         <Modal.Header closeButton>
