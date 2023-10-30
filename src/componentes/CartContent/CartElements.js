@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useContext } from "react";
 import { dataContext } from "../Context/DataContext";
 import "./CartContent.css";
+import { toast } from "react-toastify";
 
 import { useState } from "react";
 
@@ -9,12 +10,94 @@ export const CartElements = () => {
   const { cart, setCart } = useContext(dataContext);
   const [active, setActive] = useState(false);
 
-  const LimpiarCarrito = (product) => {
-    console.log(product);
+  // Función para limpiar el carrito
+  const LimpiarCarrito = () => {
     setCart([]);
   };
-  const total = cart.reduce((acc, el) => acc + el.precio, 0);
-  const contador = cart.length;
+
+  // Función para realizar la compra
+  const compra = () => {
+    toast.success(
+      "Gracias por su compra",
+      {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      },
+      setCart([])
+    );
+  };
+
+  // Función para borrar un item del carrito
+  const borrarItem = (product) => {
+    const newArray = cart.filter(
+      (item) => item.camiseta_id !== product.camiseta_id
+    );
+    setCart(newArray);
+  };
+
+  // Función para agrupar los productos repetidos en un solo objeto
+  const groupProducts = () => {
+    const groupedProducts = {};
+
+    cart.forEach((product) => {
+      if (!groupedProducts[product.camiseta_id]) {
+        groupedProducts[product.camiseta_id] = {
+          product,
+          quantity: 1,
+        };
+      } else {
+        groupedProducts[product.camiseta_id].quantity++;
+      }
+    });
+
+    return groupedProducts;
+  };
+
+  // Convertimos el objeto de productos agrupados a un array
+  const groupedProductsArray = Object.values(groupProducts());
+
+  // Total del carrito
+  const total = groupedProductsArray.reduce(
+    (acc, el) => acc + el.product.precio * el.quantity,
+    0
+  );
+
+  // Contador de productos en el carrito
+  const contador = groupedProductsArray.length;
+
+  // Función para actualizar el estado del carrito
+  const updateCart = () => {
+    setCart(groupedProductsArray);
+  };
+
+  // // Función para agregar una unidad a un producto
+  // const addProduct = (product) => {
+  //   product.quantity++;
+  //   updateCart();
+  // };
+
+  // // Función para restar una unidad a un producto
+  // const removeProduct = (camiseta_id) => {
+  //   const productIndex = groupedProductsArray.findIndex(
+  //     (product) => product.product.camiseta_id === camiseta_id
+  //   );
+
+  //   if (productIndex > -1) {
+  //     groupedProductsArray[productIndex].quantity--;
+
+  //     if (groupedProductsArray[productIndex].quantity === 0) {
+  //       groupedProductsArray.splice(productIndex, 1);
+  //     }
+
+  //     updateCart();
+  //   }
+  // };
 
   return (
     <header>
@@ -42,21 +125,45 @@ export const CartElements = () => {
         <div
           className={`container-cart-products ${active ? "" : "hidden-cart"}`}
         >
-          {cart.length ? (
+          {groupedProductsArray.length ? (
             <>
               <div className="row-product">
-                {cart.map((product) => (
-                  <div className="cart-product" key={product.camiseta_id}>
+                {groupedProductsArray.map((product) => (
+                  <div
+                    className="cart-product"
+                    key={product.product.camiseta_id}
+                  >
                     <div className="info-cart-product">
                       <span className="cantidad-producto-carrito">
-                        {product.cantidad}
+                        {product.quantity}
                       </span>
                       <p className="titulo-producto-carrito">
-                        {product.nombre_del_producto}
+                        {product.product.nombre_del_producto}
                       </p>
                       <span className="precio-producto-carrito">
-                        ${product.precio}
+                        ${product.product.precio}
                       </span>
+                      {/* <button
+                        className={
+                          product.quantity === 1
+                            ? "btn-no-op"
+                            : "btn-add-product"
+                        }
+                        onClick={() => addProduct(product.product)}
+                      >
+                        +
+                      </button>
+
+                      <button
+                        className={
+                          product.quantity === 1
+                            ? "btn-no-op"
+                            : "btn-remove-product"
+                        }
+                        onClick={() => removeProduct(product.product)}
+                      >
+                        -
+                      </button> */}
                     </div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +172,7 @@ export const CartElements = () => {
                       strokeWidth="1.5"
                       stroke="currentColor"
                       className="icon-close"
-                      onClick={() => removeFromCart(product)}
+                      onClick={() => borrarItem(product.product)}
                     >
                       <path
                         strokeLinecap="round"
@@ -93,26 +200,14 @@ export const CartElements = () => {
             <p className="cart-empty">El carrito está vacío</p>
           )}
           {total === 0 ? null : (
-            <button className="btn-clear-all">Confirmar Pedido</button>
+            <button onClick={compra} className="btn-clear-all">
+              Confirmar Pedido
+            </button>
           )}
         </div>
       </div>
     </header>
   );
 };
-// function CartElements() {
-
-//   // const { cart } = useContext(dataContext);
-
-//   // return cart.map((product) => {
-//   //   return (
-//   //     <div className="carritContent" key={product.camiseta_id}>
-//   //       <img src={product.imagen} />
-//   //       <h3 className="nombre">{product.nombre_del_producto}</h3>
-//   //       <h4 className="precio">${product.precio}</h4>
-//   //     </div>
-//   //   );
-//   // });
-// }
 
 export default CartElements;

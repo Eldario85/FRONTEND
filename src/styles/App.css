@@ -14,6 +14,8 @@
 }
 
 .bisque-background {
+  object-fit: unset;
+  display: flexbox;
   background-image: url('https://e0.pxfuel.com/wallpapers/712/436/desktop-wallpaper-football-stadium-background.jpg'); 
  
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
 function Clubes() {
   const [clubes, setClubes] = useState([]);
@@ -48,12 +49,18 @@ function Clubes() {
         <Card.Img variant="top" src={club.escudo_img} />
         <Card.Body>
           <Card.Title>{club.nombre}</Card.Title>
+          <hr></hr>
           <Card.Text>Fecha fundacion: {club.fecha_fundacion}</Card.Text>
+          <hr></hr>
           <Card.Text>Lugar de origen: {club.lugar_origen}</Card.Text>
+          <hr></hr>
           <Card.Text>Liga en la que juega: {club.liga}</Card.Text>
+          <hr></hr>
           <Card.Text>DT: {club.Dt}</Card.Text>
+          <hr></hr>
           <Card.Text>Estadio: {club.estadio}</Card.Text>
-          <Card.Text>Mas Info: {club.sitio_oficial}</Card.Text>
+          <hr></hr>
+          <Link to={club.sitio_oficial}>Mas Info: {club.sitio_oficial}</Link>
         </Card.Body>
       </Card>
     </div>

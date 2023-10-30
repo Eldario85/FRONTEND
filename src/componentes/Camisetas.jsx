@@ -32,6 +32,16 @@ const Camisetas = () => {
 
   const AgregarCarrito = (product) => {
     setCart([...cart, product]);
+    toast.success("Producto agregado al carrito", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   const handleClickDelete = () => {
@@ -65,7 +75,12 @@ const Camisetas = () => {
             progress: undefined,
             theme: "light",
           });
-          navigate("/camisetas");
+          // Actualizamos el estado del componente para que la vista se actualice
+          setCart(cart.filter((product) => product.camiseta_id !== idToDelete));
+          // Cerramos el modal
+          setModal(false);
+          // Forzamos a la página a actualizarse
+          forceUpdate();
         } else {
           toast.error(result.body.message, {
             position: "bottom-center",
@@ -85,38 +100,6 @@ const Camisetas = () => {
   var tokenDecoded = jwt_decode(sessionStorage.getItem("token"));
   const rol = tokenDecoded.rol_id;
 
-  // const cards = data.map((product, index) => (
-  //   <div key={index} className="d-flex justify-content-around">
-  //     <Card style={{ width: "18rem" }}>
-  //       <Card.Img variant="top" src={product.imagen} />
-  //       <Card.Body>
-  //         <Card.Title>{product.nombre_del_producto}</Card.Title>
-  //         <Card.Text>{product.descripcion}</Card.Text>
-  //         <Card.Text>Precio: ${product.precio}</Card.Text>
-  //         <Button variant="primary" onClick={() => AgregarCarrito(product)}>
-  //           Agregar al carrito
-  //         </Button>
-  //       </Card.Body>
-  //       {rol === 1 ? (
-  //         <Link
-  //           to={`/camisetas/edit/${product.camiseta_id}`}
-  //           className="btn btn-primary"
-  //         >
-  //           <span className="material-symbols-outlined">edit</span>
-  //         </Link>
-  //       ) : null}
-  //       {rol === 1 ? (
-  //         <button
-  //           className="btn btn-danger"
-  //           onClick={() => showModal(product.camiseta_id)}
-  //         >
-  //           <span className="material-symbols-outlined">delete</span>
-  //         </button>
-  //       ) : null}
-  //     </Card>
-  //   </div>
-  // ));
-
   return (
     <>
       {rol === 1 ? (
@@ -124,8 +107,7 @@ const Camisetas = () => {
           Nuevo Producto
         </Link>
       ) : null}
-
-      <div className="container-items">
+      <div className="d-flex justify-content-around">
         {data.map((product) => (
           <div className="item" key={product.camiseta_id}>
             <figure>
@@ -157,14 +139,38 @@ const Camisetas = () => {
           </div>
         ))}
       </div>
+
       {/* <div className="d-flex justify-content-around">
-        {cards}
-        <br />
-        {rol === 1 ? (
-          <Link to="/camisetas/edit" className="btn btn-info">
-            Nuevo Producto
-          </Link>
-        ) : null}
+        {data.map((product) => (
+          <div className="item" key={product.camiseta_id}>
+            <figure>
+              <img src={product.imagen} alt={product.nombre_del_producto} />
+            </figure>
+            <div className="info-product">
+              <h2>{product.nombre_del_producto}</h2>
+              <p className="price">${product.precio}</p>
+              <button onClick={() => AgregarCarrito(product)}>
+                Añadir al carrito
+              </button>
+              {rol === 1 ? (
+                <button
+                  className="btn btn-danger"
+                  onClick={() => showModal(product.camiseta_id)}
+                >
+                  <span className="material-symbols-outlined">delete</span>
+                </button>
+              ) : null}
+              {rol === 1 ? (
+                <Link
+                  to={`/camisetas/edit/${product.camiseta_id}`}
+                  className="btn btn-primary"
+                >
+                  <span className="material-symbols-outlined">edit</span>
+                </Link>
+              ) : null}
+            </div>
+          </div>
+        ))}
       </div> */}
 
       <Modal show={modal} onHide={closeModal}>

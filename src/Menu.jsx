@@ -3,7 +3,7 @@ import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
-import "./Menu.css";
+// import "./Menu.css";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -36,8 +36,12 @@ function Menu() {
 
     return (
       <>
-        <Navbar className="navbar bg-primary" data-bs-theme="dark">
-          <Container className="barra-menu">
+        <Navbar
+          expand="lg"
+          className=" navbar-expand-lg bg-primary"
+          data-bs-theme="dark"
+        >
+          <Container>
             <Navbar.Brand href="/">
               <Image
                 className="circular"
@@ -77,6 +81,7 @@ function Menu() {
                 </Button>
               </Nav>
             </Navbar.Collapse>
+
             <CartElements />
           </Container>
         </Navbar>
@@ -109,17 +114,6 @@ function Menu() {
                   {" "}
                   Login / Registrarse
                 </Link>
-                <Button
-                  className="navbar-toggler"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#navbarNav"
-                  aria-controls="navbarNav"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                >
-                  <span className="navbar-toggler-icon"></span>
-                </Button>
               </Nav>
             </Navbar.Collapse>
           </Container>
