@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+
 import jwt_decode from "jwt-decode";
 
 class Clientes extends Component {

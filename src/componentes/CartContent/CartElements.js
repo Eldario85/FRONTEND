@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useContext } from "react";
 import { dataContext } from "../Context/DataContext";
-import "./CartContent.css";
+// import "./CartContent.css";
 import { toast } from "react-toastify";
 
 import { useState } from "react";
@@ -18,7 +18,7 @@ export const CartElements = () => {
   // Función para realizar la compra
   const compra = () => {
     toast.success(
-      "Gracias por su compra",
+      "Gracias por su Compra!!",
       {
         position: "top-center",
         autoClose: 5000,
@@ -143,27 +143,6 @@ export const CartElements = () => {
                       <span className="precio-producto-carrito">
                         ${product.product.precio}
                       </span>
-                      {/* <button
-                        className={
-                          product.quantity === 1
-                            ? "btn-no-op"
-                            : "btn-add-product"
-                        }
-                        onClick={() => addProduct(product.product)}
-                      >
-                        +
-                      </button>
-
-                      <button
-                        className={
-                          product.quantity === 1
-                            ? "btn-no-op"
-                            : "btn-remove-product"
-                        }
-                        onClick={() => removeProduct(product.product)}
-                      >
-                        -
-                      </button> */}
                     </div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

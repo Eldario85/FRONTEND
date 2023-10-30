@@ -13,6 +13,7 @@ import Pedidos_Edit from "./componentes/Pedidos_Edit";
 import DataProvider from "./componentes/Context/DataContext";
 import Clubes from "./componentes/Clubes";
 import Equipos from "./componentes/Equipos";
+import EquiposEdit from "./componentes/EquiposEdit";
 
 function App() {
   return (
@@ -38,6 +39,8 @@ function App() {
             <Route path="/pedido/edit" element={<Pedidos_Edit />} />
             <Route path="/clubes" element={<Clubes />} />
             <Route path="/equipos" element={<Equipos />} />
+            <Route path="/equipos/edit" element={<EquiposEdit />} />
+            <Route path="/equipos/edit/:id" element={<EquiposEdit />} />
           </Routes>
         </div>
       </DataProvider>

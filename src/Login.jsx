@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./styles/App.css";
 
 function InternalLogin({ navigate }) {
   const [email, setEmail] = useState("");
@@ -66,7 +67,7 @@ function InternalLogin({ navigate }) {
           } else {
             sessionStorage.setItem("token", result.body.token);
 
-            toast.success(`Bienvenido, ${(usuario.nickname).toUpperCase()}`, {
+            toast.success(`Bienvenido, ${usuario.nickname.toUpperCase()}`, {
               position: "bottom-center",
               autoClose: 5000,
               hideProgressBar: false,
@@ -108,9 +109,11 @@ function InternalLogin({ navigate }) {
   if (estaRegistrado) {
     return (
       <div className="container">
-        <div className="row">
-          <div className="col">
-            <h1>{estaRegistrado ? "Registro de Usuario" : "Iniciar Sesión"}</h1>
+        <div className="row titulos">
+          <div className="col titulos">
+            <h1 className="titulos">
+              {estaRegistrado ? "Registro de Usuario" : "Iniciar Sesión"}
+            </h1>
           </div>
         </div>
 
@@ -222,9 +225,11 @@ function InternalLogin({ navigate }) {
   } else {
     return (
       <div className="container">
-        <div className="row">
-          <div className="col">
-            <h1>{estaRegistrado ? "Registro de Usuario" : "Iniciar Sesión"}</h1>
+        <div className="row titulos">
+          <div className="col titulos">
+            <h1 className="titulos">
+              {estaRegistrado ? "Registro de Usuario" : "Iniciar Sesión"}
+            </h1>
           </div>
         </div>
 

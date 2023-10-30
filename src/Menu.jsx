@@ -8,8 +8,10 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { FiHome } from "react-icons/fi";
-import { FaTshirt } from "react-icons/fa";
+import { FaTshirt, FaClipboardList } from "react-icons/fa";
 import { IoIosFootball } from "react-icons/io";
+import { FaPeopleArrows } from "react-icons/fa";
+
 import CartElements from "./componentes/CartContent/CartElements";
 function Menu() {
   const navigate = useNavigate();
@@ -36,11 +38,7 @@ function Menu() {
 
     return (
       <>
-        <Navbar
-          expand="lg"
-          className=" navbar-expand-lg bg-primary"
-          data-bs-theme="dark"
-        >
+        <Navbar expand="lg" className="bg-primary" data-bs-theme="dark">
           <Container>
             <Navbar.Brand href="/">
               <Image
@@ -60,32 +58,38 @@ function Menu() {
                 <Nav.Link href="/camisetas">
                   Camisetas <FaTshirt />
                 </Nav.Link>
-                <Nav.Link href="/pedido">Pedidos</Nav.Link>
+                <Nav.Link href="/pedido">
+                  Pedidos <FaClipboardList />
+                </Nav.Link>
                 {rol === 1 ? (
-                  <Nav.Link href="/clientes">Clientes</Nav.Link>
+                  <Nav.Link href="/clientes">
+                    Clientes
+                    <FaPeopleArrows />
+                  </Nav.Link>
                 ) : null}
-                        {rol === 1 ? (
+                {rol === 1 ? (
                   <Nav.Link href="/equipos">Equipos</Nav.Link>
                 ) : null}
                 <Nav.Link href="/clubes">
                   Clubes <IoIosFootball />
                 </Nav.Link>
-                <Link to={`/clientes/edit/${decoded.user_id}`}>
+                <Link className="btn" to={`/clientes/edit/${decoded.user_id}`}>
                   Bienvenido: {decoded.nickname}
                 </Link>{" "}
                 <Button
-                  className="btn btn-outline-danger ms-auto boton-logout"
+                  className="btn btn-danger ms-auto boton-logout"
                   onClick={() => logout()}
                 >
                   <span className="material-symbols-outlined ms-auto boton-logout">
                     {" "}
-                    logout
+                    Logout
                   </span>
                 </Button>
               </Nav>
+              <div className="">
+                <CartElements />
+              </div>
             </Navbar.Collapse>
-
-            <CartElements />
           </Container>
         </Navbar>
       </>
@@ -95,7 +99,7 @@ function Menu() {
       <>
         <Navbar
           expand="lg"
-          className=" navbar-expand-lg bg-primary"
+          className="navbar-expand-lg bg-primary"
           data-bs-theme="dark"
         >
           <Container>
@@ -111,7 +115,10 @@ function Menu() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link href="/">
+                  {" "}
+                  Home <FiHome />
+                </Nav.Link>
 
                 <Link to="/login" className="nav-link">
                   {" "}

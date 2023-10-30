@@ -45,7 +45,7 @@ function Clubes() {
 
   const cards = clubes.map((club, index) => (
     <div key={index} className="d-flex justify-content-around">
-      <Card style={{ width: "18rem" }}>
+      <Card style={{ width: "18rem", marginTop: "20px" }}>
         <Card.Img variant="top" src={club.escudo_img} />
         <Card.Body>
           <Card.Title>{club.nombre}</Card.Title>
@@ -66,16 +66,19 @@ function Clubes() {
     </div>
   ));
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        flexWrap: "wrap",
-        backgroundColor: "black",
-      }}
-    >
-      {cards}
-    </div>
+    <>
+      <h3 className="titulos">Info Clubes del Mundo</h3>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          backgroundColor: "black",
+        }}
+      >
+        {cards}
+      </div>
+    </>
   );
 }
 

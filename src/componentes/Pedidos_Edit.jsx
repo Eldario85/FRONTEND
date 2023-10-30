@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 export class Internal_Pedidos_Edit extends Component {
   constructor(props) {
     super(props);
@@ -14,15 +13,11 @@ export class Internal_Pedidos_Edit extends Component {
       talla: "",
       precio_unitario: "",
       fecha_del_pedido: "",
-     
+
       modal: false,
     };
   }
 
-  // como utilizamos el mismo formulario para crear y actualizar vehiculos, si no vinene ningun parametro significa que es un ALTA
-  // pero si viene "vehiculo_id" por parametro (dentro de las this.props del constructor) significa que es una MODIFICACION
-  // por lo que aprovechamos el ciclo de vida del componente para realizar un fetch al backend y traer los datos del vehiculo a ser
-  // modificado si es que viene dicho dato por parametro
   componentDidMount() {
     if (this.props.params.id) {
       this.fetchPedido(this.props.params.id);
@@ -47,7 +42,6 @@ export class Internal_Pedidos_Edit extends Component {
             talla: result.body.detail.talla,
             precio_unitario: result.body.detail.precio_unitario,
             fecha_del_pedido: result.body.detail.fecha_del_pedido,
-            
           });
         } else {
           toast.error(result.body.message, {
@@ -152,21 +146,23 @@ export class Internal_Pedidos_Edit extends Component {
                 <label htmlFor="floatingCantidad">Cantidad</label>
               </div>
               <br />
-              <select className="form-select"
-                                id="talla"
-                                aria-label="Default select example"
-                                onChange={this.handleChange}
-                                value={this.state.talla}
-                                name='talla'
-                            >
-                                <option selected disabled>Talle</option>
-                                <option value="1">Small</option>
-                                <option value="2">Medium</option>
-                                <option value="2">Large</option>
-                                <option value="2">XLarge</option>
-                                
-                            </select>
-                            <br />
+              <select
+                className="form-select"
+                id="talla"
+                aria-label="Default select example"
+                onChange={this.handleChange}
+                value={this.state.talla}
+                name="talla"
+              >
+                <option selected disabled>
+                  Talle
+                </option>
+                <option value="1">Small</option>
+                <option value="2">Medium</option>
+                <option value="2">Large</option>
+                <option value="2">XLarge</option>
+              </select>
+              <br />
               <div className="form-floating">
                 <input
                   type="text"

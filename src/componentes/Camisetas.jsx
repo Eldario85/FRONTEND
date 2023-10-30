@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
@@ -76,7 +80,7 @@ const Camisetas = () => {
             theme: "light",
           });
 
-   setModal(false);
+          setModal(false);
         } else {
           toast.error(result.body.message, {
             position: "bottom-center",
@@ -98,44 +102,50 @@ const Camisetas = () => {
 
   return (
     <>
+      <h2 className="titulos">Camisetas a la venta</h2>
       {rol === 1 ? (
         <Link to="/camisetas/edit" className="btn btn-info">
           Nuevo Producto
         </Link>
       ) : null}
-      <div className="d-flex justify-content-around">
-        {data.map((product) => (
-          <div className="item" key={product.camiseta_id}>
-            <figure>
-              <img src={product.imagen} alt={product.nombre_del_producto} />
-            </figure>
-            <div className="info-product">
-              <h2>{product.nombre_del_producto}</h2>
-              <p className="price">${product.precio}</p>
-              <button onClick={() => AgregarCarrito(product)}>
-                Añadir al carrito
-              </button>
-              {rol === 1 ? (
-                <button
-                  className="btn btn-danger"
-                  onClick={() => showModal(product.camiseta_id)}
-                >
-                  <span className="material-symbols-outlined">delete</span>
-                </button>
-              ) : null}
-              {rol === 1 ? (
-                <Link
-                  to={`/camisetas/edit/${product.camiseta_id}`}
-                  className="btn btn-primary"
-                >
-                  <span className="material-symbols-outlined">edit</span>
-                </Link>
-              ) : null}
-            </div>
-          </div>
-        ))}
-      </div>
+      <Row xs={1} md={2} className="g-4">
+        {data.map((product, idx) => (
+          <Col key={idx}>
+            <Card>
+              <Card.Img
+                variant="top"
+                src={product.imagen}
+                alt={product.nombre_del_producto}
+              />
+              <Card.Body>
+                <Card.Title>{product.nombre_del_producto}</Card.Title>
+                <Card.Text>{product.descripcion}</Card.Text>
+                <Card.Text>${product.precio}</Card.Text>
 
+                <Button onClick={() => AgregarCarrito(product)}>
+                  Añadir al Carrito
+                </Button>
+                {rol === 1 ? (
+                  <Button
+                    className="btn btn-danger"
+                    onClick={() => showModal(product.camiseta_id)}
+                  >
+                    Eliminar{" "}
+                  </Button>
+                ) : null}
+                {rol === 1 ? (
+                  <Link
+                    to={`/camisetas/edit/${product.camiseta_id}`}
+                    className="btn btn-secondary"
+                  >
+                    <span className="material-symbols-outlined">Editar</span>
+                  </Link>
+                ) : null}
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
 
       <Modal show={modal} onHide={closeModal}>
         <Modal.Header closeButton>

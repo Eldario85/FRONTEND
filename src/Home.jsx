@@ -48,7 +48,7 @@ export default function Home() {
             <MDBCarouselItem
               className="w-100 d-block my-custom-carousel-item img-fluid"
               itemId={2}
-              src="https://www.footpack.fr/wp-content/uploads/2020/06/maillot-domicile-bayern-munich-2020-2021-adidas-4-300x300.jpg"
+              src="https://todosobrecamisetas.com/wp-content/uploads/bayern-munich-2022-23-adidas-home-kit-9.jpg"
               alt="..."
             />
             <MDBCarouselItem

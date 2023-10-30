@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "../styles/App.css";
+// import "../styles/App.css";
 
 export class Internal_Clientes_Edit extends Component {
   constructor(props) {
@@ -22,10 +22,6 @@ export class Internal_Clientes_Edit extends Component {
     };
   }
 
-  // como utilizamos el mismo formulario para crear y actualizar vehiculos, si no vinene ningun parametro significa que es un ALTA
-  // pero si viene "vehiculo_id" por parametro (dentro de las this.props del constructor) significa que es una MODIFICACION
-  // por lo que aprovechamos el ciclo de vida del componente para realizar un fetch al backend y traer los datos del vehiculo a ser
-  // modificado si es que viene dicho dato por parametro
   componentDidMount() {
     if (this.props.params.id) {
       let parametros = {
@@ -77,9 +73,6 @@ export class Internal_Clientes_Edit extends Component {
         });
     }
   }
-
-  // handler invocado por el evento onSubmit() del formulario, aqui hay dos caminos posibles, un POST para la creacion o un PUT para la edicion
-  // eso lo diferenciamos mediante "this.props.params.vehiculo_id", acorde a su existencia debemos cambiar tanto la URL como el METHOD del fetch
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -241,20 +234,6 @@ export class Internal_Clientes_Edit extends Component {
                 <label for="telefono">Telefono</label>
               </div>
               <br />
-              {this.props.id != this.props.params ? (
-                <div className="form-floating display-none">
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="password"
-                    placeholder="Password"
-                    onChange={this.handleChange}
-                    value={this.state.password}
-                    name="password"
-                  />
-                  <label for="password">Password</label>
-                </div>
-              ) : null}
 
               <input
                 className="btn btn-primary"

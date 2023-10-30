@@ -10,9 +10,7 @@ class Pedidos extends Component {
 
     this.state = {
       Pedidos: [],
-    
     };
-    
   }
 
   componentDidMount() {
@@ -37,7 +35,6 @@ class Pedidos extends Component {
         if (result.ok) {
           this.setState({
             pedidos: result.body,
-            
           });
         } else {
           toast.error(result.body.message, {
@@ -55,17 +52,14 @@ class Pedidos extends Component {
       .catch((error) => console.log(error));
   }
 
- 
-
   render() {
     const filas = this.state.Pedidos.map((pedido, index) => (
       <tr key={index}>
-        <td>{pedido.id}</td>
         <td>{pedido.cantidad}</td>
         <td>{pedido.talla}</td>
         <td>{pedido.precio_unitario}</td>
         <td>{pedido.fecha_del_pedido}</td>
-     
+
         <td>
           <Link
             to={{
@@ -76,8 +70,7 @@ class Pedidos extends Component {
           >
             <span className="material-symbols-outlined">edit</span>
           </Link>
-
-
+          <button>pago</button>
         </td>
       </tr>
     ));
@@ -87,24 +80,22 @@ class Pedidos extends Component {
           <table className="table  table-striped">
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Cantidad</th>
                 <th>Talla</th>
                 <th>Precio Unitario</th>
                 <th>Fecha del pedido</th>
-            
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>{filas}</tbody>
           </table>
+
           <br />
+
           <Link to="/pedido/edit" className="btn btn-info">
             Nuevo Pedido
           </Link>
         </div>
-
-
       </>
     );
   }

@@ -1,13 +1,12 @@
-
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import "../styles/App.css";
+import { Link } from "react-router-dom";
 
 function Equipos() {
+  const [equipos, setEquipos] = useState([]);
 
-const {equipos, setEquipos}= useState([])
-
-useEffect(() => {
+  useEffect(() => {
     const parametros = {
       method: "GET",
       headers: {
@@ -15,7 +14,7 @@ useEffect(() => {
         authorization: sessionStorage.getItem("token"),
       },
     };
-debugger
+
     fetch("http://localhost:8000/equipos", parametros)
       .then((res) =>
         res.json().then((body) => ({
@@ -42,31 +41,36 @@ debugger
         }
       })
       .catch((error) => console.log(error));
-  }, [])  
-
-
+  }, []);
 
   const filas = equipos.map((equipo, index) => (
     <tr key={index}>
+      <td>{equipo.equipo_id}</td>
       <td>{equipo.nombre_del_equipo}</td>
       <td>{equipo.pais}</td>
       <td>{equipo.liga}</td>
-      <td>{equipo.año_de_fundacion}</td>
-      <td>Acciones</td>
-   
+      <td>{equipo.anio_de_fundacion}</td>
+      <Link
+        to={`/equipos/edit/${equipo.equipo_id}`}
+        className="btn btn-primary"
+      >
+        <span className="material-symbols-outlined">Editar equipo</span>
+      </Link>
     </tr>
   ));
+
   return (
     <>
       <div>
         <table className="table  table-striped">
           <thead>
             <tr>
+              <th>Id</th>
               <th>Nombre Equipo</th>
               <th>Pais</th>
               <th>Liga</th>
               <th>Año Fundacion</th>
-  
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>{filas}</tbody>
@@ -75,9 +79,6 @@ debugger
       </div>
     </>
   );
-  
 }
 
-
-
-export default Equipos
+export default Equipos;
